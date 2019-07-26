@@ -10,6 +10,6 @@ export default createGlobalStyle`
     }
 
     body {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Cousine', monospace;
     }
 `
