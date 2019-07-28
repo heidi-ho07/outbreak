@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-import Header from "../components/Header"
 import headerImg from "../images/Reisetagebuch.png"
 
 const StyledImg = styled.img`
@@ -17,11 +16,22 @@ const StyledContent = styled.p`
   display: inline;
 `
 
-const StyledIcon = styled.i`
+const StyledFolderIcon = styled.i`
   color: #414141;
 `
 
-const StyledHeader = styled.div`
+const StyledTrahIcon = styled.i`
+  color: #414141;
+`
+
+const StyledSearchBtn = styled.button`
+  border: none;
+  background: none;
+  margin-left: 20px;
+  color: #414141;
+`
+
+const StyledContainer = styled.div`
   text-align: center;
 `
 
@@ -33,6 +43,24 @@ const StyledInput = styled.input`
   border-right: 0;
   border-left: 0;
   margin-top: 10px;
+  margin-bottom: 40px;
+`
+
+const StyledCountry = styled.p`
+  margin-right: 10px;
+  color: #414141;
+`
+
+const StyledCountryContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  margin: 10px;
+`
+
+const StyledHeadline = styled.div`
+  margin-bottom: 20px;
 `
 
 function Overview() {
@@ -50,27 +78,27 @@ function Overview() {
   }
 
   return (
-    <>
+    <StyledContainer>
       <StyledImg src={headerImg} alt="travel-diary image" />
-      <StyledHeader>
+      <StyledHeadline>
         <StyledContent>Übersicht meiner Länder</StyledContent>
-        <StyledIcon className="fas fa-folder-plus fa-lg" />
-        <br />
-        <form onSubmit={addNewCountry}>
-          <StyledInput
-            value={newCountry}
-            onChange={handleChange}
-            type="search"
-          />
-          <button type="submit">
-            <i className="fa fa-search" />
-          </button>
-        </form>
-        {countries.map(country => {
-          return <p>{country}</p>
-        })}
-      </StyledHeader>
-    </>
+        <StyledFolderIcon className="fas fa-folder-plus fa-lg" />
+      </StyledHeadline>
+      <form onSubmit={addNewCountry}>
+        <StyledInput value={newCountry} onChange={handleChange} type="search" />
+        <StyledSearchBtn type="submit">
+          <i className="fa fa-search fa-s" />
+        </StyledSearchBtn>
+      </form>
+      {countries.map(country => {
+        return (
+          <StyledCountryContainer>
+            <StyledCountry>{country}</StyledCountry>
+            <StyledTrahIcon className="fas fa-trash-alt fa-s" />
+          </StyledCountryContainer>
+        )
+      })}
+    </StyledContainer>
   )
 }
 
