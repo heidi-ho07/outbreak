@@ -9,15 +9,15 @@ const StyledHeader = styled.img`
 `
 const StyledContainer = styled.div`
   display: flex;
-  justify-content: center; /* align horizontal */
-  align-items: center; /*align vertical */
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 `
 
 function Header() {
   return (
     <StyledContainer>
-      <StyledHeader className="outbreak-logo" src={logo} alt="outbreak-logo" />
+      <StyledHeader src={logo} alt="outbreak-logo" />
     </StyledContainer>
   )
 }

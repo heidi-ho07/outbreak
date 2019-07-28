@@ -33,7 +33,7 @@ const StyledContainer = styled.div`
 function Landingpage() {
   return (
     <>
-      <StyledImg className="headerImg" src={headerImg} alt="dream-image" />
+      <StyledImg src={headerImg} alt="dream-image" />
       <StyledContainer>
         <StyledHeader>Welcome to Outbreak</StyledHeader>
         <StyledContent>
