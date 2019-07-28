@@ -37,6 +37,17 @@ const StyledInput = styled.input`
 
 function Overview() {
   const [countries, setCountries] = React.useState(["Australien", "Thailand"])
+  const [newCountry, setNewCountry] = React.useState("")
+
+  function handleChange(event) {
+    setNewCountry(event.target.value)
+  }
+
+  function addNewCountry(event) {
+    event.preventDefault()
+    setCountries([...countries, newCountry])
+    setNewCountry("")
+  }
 
   return (
     <>
@@ -45,8 +56,12 @@ function Overview() {
         <StyledContent>Übersicht meiner Länder</StyledContent>
         <StyledIcon className="fas fa-folder-plus fa-lg" />
         <br />
-        <form>
-          <StyledInput type="search" />
+        <form onSubmit={addNewCountry}>
+          <StyledInput
+            value={newCountry}
+            onChange={handleChange}
+            type="search"
+          />
           <button type="submit">
             <i className="fa fa-search" />
           </button>
