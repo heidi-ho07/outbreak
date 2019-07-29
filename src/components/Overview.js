@@ -18,6 +18,7 @@ const StyledContent = styled.p`
 
 const StyledFolderIcon = styled.i`
   color: #414141;
+  margin-left: 50px;
 `
 
 const StyledTrahIcon = styled.i`
@@ -37,13 +38,13 @@ const StyledContainer = styled.div`
 
 const StyledInput = styled.input`
   background: #fff;
-  border-bottom: 2px solid #d7d1c9;
+  border-bottom: 1px solid #d7d1c9;
   border-radius: 2px;
   border-top: 0;
   border-right: 0;
   border-left: 0;
   margin-top: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 `
 
 const StyledCountry = styled.p`
@@ -57,6 +58,14 @@ const StyledCountryContainer = styled.div`
   justify-content: space-between;
   padding: 0 80px;
   margin: 10px;
+`
+
+const StyledInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  margin: 5px;
 `
 
 const StyledHeadline = styled.div`
@@ -82,14 +91,19 @@ function Overview() {
       <StyledImg src={headerImg} alt="travel-diary image" />
       <StyledHeadline>
         <StyledContent>Übersicht meiner Länder</StyledContent>
-        <StyledFolderIcon className="fas fa-folder-plus fa-lg" />
       </StyledHeadline>
-      <form onSubmit={addNewCountry}>
-        <StyledInput value={newCountry} onChange={handleChange} type="search" />
-        <StyledSearchBtn type="submit">
-          <i className="fa fa-search fa-s" />
-        </StyledSearchBtn>
-      </form>
+      <StyledInputContainer>
+        <form onSubmit={addNewCountry}>
+          <StyledInput
+            value={newCountry}
+            onChange={handleChange}
+            type="search"
+          />
+          <StyledSearchBtn type="submit">
+            <StyledFolderIcon className="fas fa-folder-plus fa-2x" />
+          </StyledSearchBtn>
+        </form>
+      </StyledInputContainer>
       {countries.map(country => {
         return (
           <StyledCountryContainer>
