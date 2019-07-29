@@ -18,10 +18,10 @@ const StyledContent = styled.p`
 
 const StyledFolderIcon = styled.i`
   color: #414141;
-  margin-left: 50px;
+  padding: 10px;
 `
 
-const StyledTrahIcon = styled.i`
+const StyledTrashIcon = styled.i`
   color: #414141;
 `
 
@@ -37,14 +37,9 @@ const StyledContainer = styled.div`
 `
 
 const StyledInput = styled.input`
-  background: #fff;
-  border-bottom: 1px solid #d7d1c9;
-  border-radius: 2px;
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  margin-top: 10px;
-  margin-bottom: 60px;
+  border: none;
+  flex: 1;
+  font-family: "Cousine", monospace;
 `
 
 const StyledCountry = styled.p`
@@ -61,11 +56,10 @@ const StyledCountryContainer = styled.div`
 `
 
 const StyledInputContainer = styled.div`
+  border-bottom: 1px solid #ddd;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  margin: 5px;
+  flex-direction: row;
+  margin: 0 65px;
 `
 
 const StyledHeadline = styled.div`
@@ -76,8 +70,9 @@ function Overview() {
   const [countries, setCountries] = React.useState([
     "Australien",
     "Thailand",
-    "Deutschland"
+    "Taka-Tuka-Land"
   ])
+
   const [newCountry, setNewCountry] = React.useState("")
 
   function handleChange(event) {
@@ -91,8 +86,9 @@ function Overview() {
   }
 
   function handleDelete(index) {
-    countries.splice(index, 1)
-    setCountries([...countries])
+    // countries.splice(index, 1)
+    // setCountries([...countries])
+    setCountries([...countries.slice(0, index), ...countries.slice(index + 1)])
   }
 
   return (
@@ -101,23 +97,24 @@ function Overview() {
       <StyledHeadline>
         <StyledContent>Übersicht meiner Länder</StyledContent>
       </StyledHeadline>
-      <StyledInputContainer>
-        <form onSubmit={addNewCountry}>
+      <form onSubmit={addNewCountry}>
+        <StyledInputContainer>
           <StyledInput
             value={newCountry}
             onChange={handleChange}
             type="search"
+            placeholder="Land hinzufügen"
           />
           <StyledSearchBtn type="submit">
             <StyledFolderIcon className="fas fa-folder-plus fa-2x" />
           </StyledSearchBtn>
-        </form>
-      </StyledInputContainer>
+        </StyledInputContainer>
+      </form>
       {countries.map((country, index) => {
         return (
           <StyledCountryContainer>
             <StyledCountry>{country}</StyledCountry>
-            <StyledTrahIcon
+            <StyledTrashIcon
               onClick={() => handleDelete(index)}
               className="fas fa-trash-alt fa-s"
             />
