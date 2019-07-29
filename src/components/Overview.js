@@ -73,7 +73,11 @@ const StyledHeadline = styled.div`
 `
 
 function Overview() {
-  const [countries, setCountries] = React.useState(["Australien", "Thailand"])
+  const [countries, setCountries] = React.useState([
+    "Australien",
+    "Thailand",
+    "Deutschland"
+  ])
   const [newCountry, setNewCountry] = React.useState("")
 
   function handleChange(event) {
@@ -84,6 +88,11 @@ function Overview() {
     event.preventDefault()
     setCountries([...countries, newCountry])
     setNewCountry("")
+  }
+
+  function handleDelete(index) {
+    countries.splice(index, 1)
+    setCountries([...countries])
   }
 
   return (
@@ -104,11 +113,14 @@ function Overview() {
           </StyledSearchBtn>
         </form>
       </StyledInputContainer>
-      {countries.map(country => {
+      {countries.map((country, index) => {
         return (
           <StyledCountryContainer>
             <StyledCountry>{country}</StyledCountry>
-            <StyledTrahIcon className="fas fa-trash-alt fa-s" />
+            <StyledTrahIcon
+              onClick={() => handleDelete(index)}
+              className="fas fa-trash-alt fa-s"
+            />
           </StyledCountryContainer>
         )
       })}
