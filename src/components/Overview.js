@@ -23,6 +23,7 @@ const StyledFolderIcon = styled.i`
 
 const StyledTrashIcon = styled.i`
   color: #414141;
+  /* cursor: pointer; */
 `
 
 const StyledSearchBtn = styled.button`
@@ -88,7 +89,12 @@ function Overview() {
   function handleDelete(index) {
     // countries.splice(index, 1)
     // setCountries([...countries])
-    setCountries([...countries.slice(0, index), ...countries.slice(index + 1)])
+    setTimeout(function() {
+      setCountries([
+        ...countries.slice(0, index),
+        ...countries.slice(index + 1)
+      ])
+    }, 500)
   }
 
   return (
@@ -112,11 +118,11 @@ function Overview() {
       </form>
       {countries.map((country, index) => {
         return (
-          <StyledCountryContainer>
+          <StyledCountryContainer key={country}>
             <StyledCountry>{country}</StyledCountry>
             <StyledTrashIcon
               onClick={() => handleDelete(index)}
-              className="fas fa-trash-alt fa-s"
+              className="fas fa-trash-alt fa-s shake"
             />
           </StyledCountryContainer>
         )

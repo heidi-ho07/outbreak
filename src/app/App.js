@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 
 import GlobalStyles from "../app/Globalstyles"
 import Header from "../components/Header"
@@ -16,6 +16,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/overview" component={Overview} />
+          {/* <Link to="/country" component={Country} />
+          <Route exact path="/country/:name" component={Country} /> */}
           <Route exact path="/country" component={Country} />
         </Switch>
       </Router>
