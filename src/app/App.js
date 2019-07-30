@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Route } from "react-router-dom"
+import { Redirect } from "react-router"
 
 import GlobalStyles from "../app/Globalstyles"
 import Header from "../components/Header"
@@ -10,7 +11,9 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Header />
+      <a href="/">
+        <Header />
+      </a>
       <Router>
         <Route exact path="/" component={Landingpage} />
         <Route exact path="/overview" component={Overview} />
