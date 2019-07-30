@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import GlobalStyles from "../app/Globalstyles"
 import Header from "../components/Header"
@@ -10,10 +10,12 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Header />
       <Router>
-        <Route exact path="/" component={Landingpage} />
-        <Route exact path="/overview" component={Overview} />
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Landingpage} />
+          <Route exact path="/overview" component={Overview} />
+        </Switch>
       </Router>
     </>
   )

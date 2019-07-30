@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import headerImg from "../images/dream.png"
+import Button from "./Button"
 
 const StyledHeader = styled.h1`
   margin: 0;
@@ -20,6 +21,7 @@ const StyledImg = styled.img`
 const StyledContent = styled.div`
   font-size: 1em;
   padding: 10px;
+  margin-bottom: 10px;
 `
 const StyledContainer = styled.div`
   padding: 18px;
@@ -44,6 +46,7 @@ function Landingpage() {
           Ich bin super gespannt auf deine Erlebnisse. Klicke auf den Button und
           fange an mir von deinen Abenteuern zu erzählen.
         </StyledContent>
+        <Button />
       </StyledContainer>
     </>
   )
