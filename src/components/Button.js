@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
 
 const StyledButton = styled.button`
   font-family: "Cousine", monospace;
@@ -9,7 +10,7 @@ const StyledButton = styled.button`
   font-size: 15px;
   border: solid #bbded6 2px;
   text-decoration: none;
-  background-color: none;
+  background-color: transparent;
   padding: 10px 15px;
 `
 
@@ -28,10 +29,12 @@ const StyledContainer = styled.div`
 function Button({ icon, onClick, ...props }) {
   return (
     <StyledContainer>
-      <StyledButton onClick={onClick} {...props}>
-        Reisetagebuch erstellen
-        <StyledIconPen className="fas fa-pencil-alt fa-lg" />
-      </StyledButton>
+      <Link to="/overview">
+        <StyledButton onClick={onClick} {...props}>
+          Reisetagebuch erstellen
+          <StyledIconPen className="fas fa-pencil-alt fa-lg" />
+        </StyledButton>
+      </Link>
     </StyledContainer>
   )
 }

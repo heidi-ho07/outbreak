@@ -46,7 +46,7 @@ function Landingpage() {
           Ich bin super gespannt auf deine Erlebnisse. Klicke auf den Button und
           fange an mir von deinen Abenteuern zu erzählen.
         </StyledContent>
-        <Button />
+        <Button to="/overview" />
       </StyledContainer>
     </>
   )
