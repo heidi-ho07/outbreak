@@ -30,7 +30,7 @@ function Button({ icon, onClick, ...props }) {
   return (
     <StyledContainer>
       <Link to="/overview">
-        <StyledButton onClick={onClick} {...props}>
+        <StyledButton>
           Reisetagebuch erstellen
           <StyledIconPen className="fas fa-pencil-alt fa-lg" />
         </StyledButton>
@@ -41,8 +41,7 @@ function Button({ icon, onClick, ...props }) {
 
 Button.propTypes = {
   icon: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  onClick: PropTypes.func
+  className: PropTypes.string
 }
 
 export default Button
