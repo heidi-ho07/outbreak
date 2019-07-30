@@ -6,19 +6,33 @@ const StyledButton = styled.button`
   font-family: "Cousine", monospace;
   border-radius: 10px;
   color: #414141;
-  font-size: 20px;
-  padding: 10px 23px 10px 23px;
+  font-size: 15px;
   border: solid #bbded6 2px;
   text-decoration: none;
   background-color: none;
+  padding: 10px 15px;
+`
+
+const StyledIconPen = styled.i`
+  color: #414141;
+  border-left: 2px solid #bbded6;
+  padding: 5px 5px 5px 20px;
+  margin-left: 15px;
+`
+
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `
 
 function Button({ icon, onClick, ...props }) {
   return (
-    <>
-      <StyledButton onClick={onClick} {...props} />
-      <i className={`fas ${icon}`} />
-    </>
+    <StyledContainer>
+      <StyledButton onClick={onClick} {...props}>
+        Reisetagebuch erstellen
+        <StyledIconPen className="fas fa-pencil-alt fa-lg" />
+      </StyledButton>
+    </StyledContainer>
   )
 }
 
