@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 import logo from "../images/outbreak-logo.png"
 
@@ -17,7 +18,9 @@ const StyledContainer = styled.div`
 function Header() {
   return (
     <StyledContainer>
-      <StyledHeader src={logo} alt="outbreak-logo" />
+      <Link to="/">
+        <StyledHeader src={logo} alt="outbreak-logo" />
+      </Link>
     </StyledContainer>
   )
 }
