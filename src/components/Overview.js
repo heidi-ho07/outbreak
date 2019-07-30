@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 import headerImg from "../images/Reisetagebuch.png"
@@ -67,13 +67,13 @@ const StyledHeadline = styled.div`
 `
 
 function Overview() {
-  const [countries, setCountries] = React.useState([
+  const [countries, setCountries] = useState([
     "Australien",
     "Thailand",
     "Taka-Tuka-Land"
   ])
 
-  const [newCountry, setNewCountry] = React.useState("")
+  const [newCountry, setNewCountry] = useState("")
 
   function handleChange(event) {
     setNewCountry(event.target.value)
