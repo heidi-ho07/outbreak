@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 import headerImg from "../images/Reisetagebuch.png"
 
@@ -23,7 +24,6 @@ const StyledFolderIcon = styled.i`
 
 const StyledTrashIcon = styled.i`
   color: #414141;
-  /* cursor: pointer; */
 `
 
 const StyledSearchBtn = styled.button`
@@ -118,13 +118,15 @@ function Overview() {
       </form>
       {countries.map((country, index) => {
         return (
-          <StyledCountryContainer key={country}>
-            <StyledCountry>{country}</StyledCountry>
-            <StyledTrashIcon
-              onClick={() => handleDelete(index)}
-              className="fas fa-trash-alt fa-s shake"
-            />
-          </StyledCountryContainer>
+          <Link to={`/country/${country}`}>
+            <StyledCountryContainer key={country}>
+              <StyledCountry>{country}</StyledCountry>
+              <StyledTrashIcon
+                onClick={() => handleDelete(index)}
+                className="fas fa-trash-alt fa-s shake"
+              />
+            </StyledCountryContainer>
+          </Link>
         )
       })}
     </StyledContainer>

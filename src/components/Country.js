@@ -19,10 +19,12 @@ const StyledOverview = styled.div`
   font-size: 12px;
 `
 
-function Country() {
+function Country(props) {
+  console.log(props.match.params.name)
   return (
     <>
       <StyledImg src={headerImg} alt="travel-diary image" />
+      <h1>{props.match.params.name}</h1>
 
       <StyledOverview>Beiträge (3)</StyledOverview>
       <StyledContainer>

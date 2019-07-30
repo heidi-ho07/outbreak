@@ -16,9 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/overview" component={Overview} />
-          {/* <Link to="/country" component={Country} />
-          <Route exact path="/country/:name" component={Country} /> */}
-          <Route exact path="/country" component={Country} />
+          <Route exact path="/country/:name" component={Country} />
         </Switch>
       </Router>
     </>
