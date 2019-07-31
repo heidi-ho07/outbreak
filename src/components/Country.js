@@ -29,17 +29,29 @@ const StyledOverview = styled.div`
 
 function Country(props) {
   console.log(props.match.params.name)
+  const dates = [
+    "2019/07/01 - Bangkok",
+    "2019/07/07 - Chiang Mai",
+    "2019/07/15 - Koh Samui"
+  ]
+
   return (
     <>
       <Globalstyle />
       <StyledHeader>
         <StyledCountry>{props.match.params.name}</StyledCountry>
       </StyledHeader>
-      <StyledOverview>Beiträge (3)</StyledOverview>
+      <StyledOverview>Beiträge ({dates.length})</StyledOverview>
       <StyledContainer>
-        <p>2019/07/01 - Bangkok</p>
-        <p>2019/07/07 - Chiang Mai</p>
-        <p>2019/07/15 - Koh Samui</p>
+        <ul>
+          {dates.map(date => {
+            return (
+              <li>
+                <span key="date">{date}</span>
+              </li>
+            )
+          })}
+        </ul>
       </StyledContainer>
     </>
   )
