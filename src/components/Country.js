@@ -2,12 +2,20 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 import headerImg from "../images/country.png"
+import Globalstyle from "../app/Globalstyles"
 
-const StyledImg = styled.img`
-  height: 100%;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+const StyledHeader = styled.div`
+  background-image: url(${headerImg});
+  background-size: 100%;
+  height: 142px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+`
+
+const StyledCountry = styled.h1`
+  color: white;
 `
 
 const StyledContainer = styled.div`
@@ -23,9 +31,10 @@ function Country(props) {
   console.log(props.match.params.name)
   return (
     <>
-      <StyledImg src={headerImg} alt="travel-diary image" />
-      <h1>{props.match.params.name}</h1>
-
+      <Globalstyle />
+      <StyledHeader>
+        <StyledCountry>{props.match.params.name}</StyledCountry>
+      </StyledHeader>
       <StyledOverview>Beiträge (3)</StyledOverview>
       <StyledContainer>
         <p>2019/07/01 - Bangkok</p>

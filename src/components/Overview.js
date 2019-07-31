@@ -118,15 +118,15 @@ function Overview() {
       </form>
       {countries.map((country, index) => {
         return (
-          <Link to={`/country/${country}`}>
-            <StyledCountryContainer key={country}>
+          <StyledCountryContainer key={country}>
+            <Link to={`/country/${country}`}>
               <StyledCountry>{country}</StyledCountry>
-              <StyledTrashIcon
-                onClick={() => handleDelete(index)}
-                className="fas fa-trash-alt fa-s shake"
-              />
-            </StyledCountryContainer>
-          </Link>
+            </Link>
+            <StyledTrashIcon
+              onClick={() => handleDelete(index)}
+              className="fas fa-trash-alt fa-s shake"
+            />
+          </StyledCountryContainer>
         )
       })}
     </StyledContainer>
