@@ -19,10 +19,6 @@ const StyledCountry = styled.h1`
   color: white;
 `
 
-const StyledContainer = styled.div`
-  /* text-align: center; */
-`
-
 const StyledOverview = styled.div`
   text-align: center;
   font-size: 12px;
@@ -36,6 +32,16 @@ const StyledLi = styled.li`
 const StyledPlane = styled.i`
   color: #414141;
   padding-right: 40px;
+`
+const StyledIconPen = styled.i`
+  color: #414141;
+  border-left: 2px solid #bbded6;
+  padding: 5px 5px 5px 20px;
+  margin-left: 15px;
+`
+
+const StyledContainer = styled.div`
+  text-align: center;
 `
 
 function Country(props) {
@@ -52,18 +58,21 @@ function Country(props) {
         <StyledCountry>{props.match.params.name}</StyledCountry>
       </StyledHeader>
       <StyledOverview>Beiträge ({dates.length})</StyledOverview>
+      <ul>
+        {dates.map(date => {
+          return (
+            <StyledLi>
+              <StyledPlane className="fab fa-telegram-plane" />
+              <span key="date">{date}</span>
+            </StyledLi>
+          )
+        })}
+      </ul>
       <StyledContainer>
-        <ul>
-          {dates.map(date => {
-            return (
-              <StyledLi>
-                <StyledPlane className="fab fa-telegram-plane" />
-                <span key="date">{date}</span>
-              </StyledLi>
-            )
-          })}
-        </ul>
-        <Button />
+        <Button>
+          Neuer Beitrag
+          <StyledIconPen className="far fa-edit fa-lg" />
+        </Button>
       </StyledContainer>
     </>
   )

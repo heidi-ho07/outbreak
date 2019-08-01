@@ -18,7 +18,7 @@ function Button(props) {
 }
 
 Button.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   className: PropTypes.string
 }
 
