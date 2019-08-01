@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 import headerImg from "../images/country.png"
 import Globalstyle from "../app/Globalstyles"
+import Button from "./Button"
 
 const StyledHeader = styled.div`
   background-image: url(${headerImg});
@@ -19,12 +20,22 @@ const StyledCountry = styled.h1`
 `
 
 const StyledContainer = styled.div`
-  text-align: center;
+  /* text-align: center; */
 `
 
 const StyledOverview = styled.div`
   text-align: center;
   font-size: 12px;
+`
+
+const StyledLi = styled.li`
+  line-height: 1.8;
+  list-style-type: none;
+`
+
+const StyledPlane = styled.i`
+  color: #414141;
+  padding-right: 40px;
 `
 
 function Country(props) {
@@ -34,7 +45,6 @@ function Country(props) {
     "2019/07/07 - Chiang Mai",
     "2019/07/15 - Koh Samui"
   ]
-
   return (
     <>
       <Globalstyle />
@@ -46,12 +56,14 @@ function Country(props) {
         <ul>
           {dates.map(date => {
             return (
-              <li>
+              <StyledLi>
+                <StyledPlane className="fab fa-telegram-plane" />
                 <span key="date">{date}</span>
-              </li>
+              </StyledLi>
             )
           })}
         </ul>
+        <Button />
       </StyledContainer>
     </>
   )
