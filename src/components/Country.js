@@ -45,12 +45,12 @@ const StyledContainer = styled.div`
 `
 
 function Country(props) {
-  console.log(props.match.params.name)
   const dates = [
     "2019/07/01 - Bangkok",
     "2019/07/07 - Chiang Mai",
     "2019/07/15 - Koh Samui"
   ]
+
   return (
     <>
       <Globalstyle />

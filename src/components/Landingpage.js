@@ -40,11 +40,7 @@ const StyledIconPen = styled.i`
   margin-left: 15px;
 `
 
-function ButtonInput(props) {
-  return <h1>{props.content}</h1>
-}
-
-function Landingpage({ props }) {
+function Landingpage() {
   return (
     <>
       <StyledImg src={headerImg} alt="dream-image" />
@@ -70,7 +66,7 @@ function Landingpage({ props }) {
 }
 
 Landingpage.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   className: PropTypes.string,
   content: PropTypes.string
 }
