@@ -1,5 +1,7 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+import PropTypes from "prop-types"
 
 import headerImg from "../images/dream.png"
 import Button from "./Button"
@@ -31,6 +33,12 @@ const StyledContainer = styled.div`
   position: relative;
   text-align: center;
 `
+const StyledIconPen = styled.i`
+  color: #414141;
+  border-left: 2px solid #bbded6;
+  padding: 5px 5px 5px 20px;
+  margin-left: 15px;
+`
 
 function Landingpage() {
   return (
@@ -46,10 +54,21 @@ function Landingpage() {
           Ich bin super gespannt auf deine Erlebnisse. Klicke auf den Button und
           fange an mir von deinen Abenteuern zu erzählen.
         </StyledContent>
-        <Button />
+        <Link to="/overview">
+          <Button>
+            Reisetagebuch schreiben
+            <StyledIconPen className="fas fa-pencil-alt fa-lg" />
+          </Button>
+        </Link>
       </StyledContainer>
     </>
   )
+}
+
+Landingpage.propTypes = {
+  icon: PropTypes.string,
+  className: PropTypes.string,
+  content: PropTypes.string
 }
 
 export default Landingpage

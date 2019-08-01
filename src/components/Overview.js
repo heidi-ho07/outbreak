@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 import headerImg from "../images/Reisetagebuch.png"
 
@@ -88,7 +89,12 @@ function Overview() {
   function handleDelete(index) {
     // countries.splice(index, 1)
     // setCountries([...countries])
-    setCountries([...countries.slice(0, index), ...countries.slice(index + 1)])
+    setTimeout(function() {
+      setCountries([
+        ...countries.slice(0, index),
+        ...countries.slice(index + 1)
+      ])
+    }, 500)
   }
 
   return (
@@ -112,11 +118,13 @@ function Overview() {
       </form>
       {countries.map((country, index) => {
         return (
-          <StyledCountryContainer>
-            <StyledCountry>{country}</StyledCountry>
+          <StyledCountryContainer key={country}>
+            <Link to={`/country/${country}`}>
+              <StyledCountry>{country}</StyledCountry>
+            </Link>
             <StyledTrashIcon
               onClick={() => handleDelete(index)}
-              className="fas fa-trash-alt fa-s"
+              className="fas fa-trash-alt fa-s shake"
             />
           </StyledCountryContainer>
         )

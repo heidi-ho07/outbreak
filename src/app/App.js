@@ -5,6 +5,7 @@ import GlobalStyles from "../app/Globalstyles"
 import Header from "../components/Header"
 import Landingpage from "../components/Landingpage"
 import Overview from "../components/Overview"
+import Country from "../components/Country"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/overview" component={Overview} />
+          <Route exact path="/country/:name" component={Country} />
         </Switch>
       </Router>
     </>
