@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -73,6 +73,17 @@ function Overview() {
     "Thailand",
     "Taka-Tuka-Land"
   ])
+
+  React.useEffect(() => {
+    const data = localStorage.getItem("country")
+    if (data) {
+      setCountries(JSON.parse(data))
+    }
+  }, [])
+
+  React.useEffect(() => {
+    localStorage.setItem("country", JSON.stringify(countries))
+  })
 
   const [newCountry, setNewCountry] = useState("")
 
