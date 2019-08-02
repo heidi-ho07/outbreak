@@ -9,7 +9,7 @@ const StyledImg = styled.img`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
-  opacity: 0.8;
+  opacity: 0.7;
 `
 
 const StyledInput = styled.input`
