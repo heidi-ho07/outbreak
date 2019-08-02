@@ -13,6 +13,7 @@ const StyledImg = styled.img`
 `
 
 const StyledInput = styled.input`
+  background-color: transparent;
   border: 2px solid #bbded6;
   border-radius: 5px;
   font-family: "Cousine", monospace;
@@ -51,7 +52,7 @@ const StyledForm = styled.form`
 `
 
 const StyledIconSave = styled.i`
-  color: #414141;
+  color: white;
   border-left: 2px solid #bbded6;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;

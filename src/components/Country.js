@@ -35,7 +35,7 @@ const StyledPlane = styled.i`
   padding-right: 40px;
 `
 const StyledIconPen = styled.i`
-  color: #414141;
+  color: white;
   border-left: 2px solid #bbded6;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;

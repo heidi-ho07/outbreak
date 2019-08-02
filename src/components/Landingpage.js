@@ -30,12 +30,10 @@ const StyledContainer = styled.div`
   border-top: 2px solid #414141;
   border-bottom: 2px solid #414141;
   border-radius: 4px;
-  position: relative;
   text-align: center;
 `
 const StyledIconPen = styled.i`
-  color: #414141;
-  border-left: 2px solid #bbded6;
+  color: white;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
 `

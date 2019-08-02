@@ -41,6 +41,7 @@ const StyledInput = styled.input`
   border: none;
   flex: 1;
   font-family: "Cousine", monospace;
+  outline: none;
 `
 
 const StyledCountry = styled.p`
@@ -75,7 +76,7 @@ function Overview() {
   ])
 
   React.useEffect(() => {
-    const data = localStorage.getItem("country")
+    const data = localStorage.getItem("country", countries)
     if (data) {
       setCountries(JSON.parse(data))
     }
