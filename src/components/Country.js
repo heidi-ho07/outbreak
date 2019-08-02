@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 import headerImg from "../images/country.png"
 import Globalstyle from "../app/Globalstyles"
@@ -69,10 +70,12 @@ function Country(props) {
         })}
       </ul>
       <StyledContainer>
-        <Button>
-          Neuer Beitrag
-          <StyledIconPen className="far fa-edit fa-lg" />
-        </Button>
+        <Link to="/form">
+          <Button>
+            Neuer Beitrag
+            <StyledIconPen className="far fa-edit fa-lg" />
+          </Button>
+        </Link>
       </StyledContainer>
     </>
   )
