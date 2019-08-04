@@ -13,7 +13,6 @@ const StyledImg = styled.img`
 `
 
 const StyledInput = styled.input`
-  background-color: transparent;
   border: 2px solid #bbded6;
   border-radius: 5px;
   font-family: "Cousine", monospace;
@@ -21,6 +20,8 @@ const StyledInput = styled.input`
   width: 80%;
   height: 30px;
   outline: none;
+  opacity: 0.6;
+  color: #414141;
   ::placeholder {
     font-size: 19px;
     color: #dedede;
@@ -35,11 +36,11 @@ const StyledTextarea = styled.textarea`
   height: 300px;
   font-family: "Cousine", monospace;
   font-size: 17px;
-  background-image: url(https://images.unsplash.com/photo-1554757387-fa0367573d09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
-  background-size: cover;
+  background-color: none;
+  color: #414141;
   margin: 30px;
-  opacity: 0.9;
   outline: none;
+  opacity: 0.6;
   ::placeholder {
     font-size: 19px;
     color: #dedede;

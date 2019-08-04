@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import headerImg from "../images/country.png"
+import headerImg from "../images/overview.png"
 import Globalstyle from "../app/Globalstyles"
 import Button from "./Button"
 
@@ -14,6 +14,7 @@ const StyledHeader = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+  filter: grayscale(80%);
 `
 
 const StyledCountry = styled.h1`

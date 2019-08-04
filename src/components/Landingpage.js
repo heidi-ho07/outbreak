@@ -45,7 +45,7 @@ function Landingpage() {
       <StyledContainer>
         <StyledHeader>Welcome to Outbreak</StyledHeader>
         <StyledContent>
-          Hallo ich bin Outbreak dein Reisetagebuch.
+          Hallo ich bin Outbreak - dein Reisetagebuch.
         </StyledContent>
 
         <StyledContent>

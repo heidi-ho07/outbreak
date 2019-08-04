@@ -11,5 +11,6 @@ export default createGlobalStyle`
 
     body {
         font-family: 'Cousine', monospace;
+     
     }
 `
