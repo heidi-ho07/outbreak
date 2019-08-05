@@ -60,16 +60,52 @@ const StyledIconSave = styled.i`
 `
 
 function Form() {
+  const [title, setTitle] = React.useState("")
+  const [content, setContent] = React.useState("")
+
+  function addNewExperience(event) {
+    event.preventDefault()
+    setTitle("")
+    setContent("")
+    console.log(title, content)
+  }
+
+  function handleTitleChange(event) {
+    setTitle(event.target.value)
+  }
+
+  function handleContentChange(event) {
+    setContent(event.target.value)
+  }
+
   return (
     <>
       <StyledImg src={headerImg} alt="dream-image" />
-      <StyledForm>
-        <StyledInput type="text" placeholder="Datum und Ort" />
-        <StyledTextarea placeholder="Was hast du dort erlebt?" />
+      <StyledForm onSubmit={addNewExperience}>
+        <StyledInput
+          onChange={handleTitleChange}
+          type="text"
+          placeholder="Datum und Ort"
+          value={title}
+          name="title"
+        />
+        <StyledTextarea
+          onChange={handleContentChange}
+          placeholder="Was hast du dort erlebt?"
+          value={content}
+          name="content"
+        />
         <Button>
           Text speichern
           <StyledIconSave className="fas fa-save fa-lg" />
         </Button>
+        {/* <ul>
+          <li>`shit dosen't work`</li>
+          <li>
+            {title}
+            {content}
+          </li>
+        </ul> */}
       </StyledForm>
     </>
   )

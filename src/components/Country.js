@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -63,9 +63,9 @@ function Country(props) {
       <ul>
         {dates.map(date => {
           return (
-            <StyledLi>
+            <StyledLi key={date}>
               <StyledPlane className="fab fa-telegram-plane" />
-              <span key="date">{date}</span>
+              <span>{date}</span>
             </StyledLi>
           )
         })}

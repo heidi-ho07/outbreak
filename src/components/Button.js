@@ -11,6 +11,7 @@ const StyledButton = styled.button`
   border: none;
   text-decoration: none;
   padding: 10px 15px;
+  outline: none;
 `
 
 function Button(props) {
