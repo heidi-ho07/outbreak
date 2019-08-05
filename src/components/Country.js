@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import headerImg from "../images/overview.png"
 import Globalstyle from "../app/Globalstyles"
 import Button from "./Button"
+import Form from "./Form"
 
 const StyledHeader = styled.div`
   background-image: url(${headerImg});
@@ -44,14 +45,15 @@ const StyledIconPen = styled.i`
 
 const StyledContainer = styled.div`
   text-align: center;
+  margin-bottom: 30px;
 `
 
 function Country(props) {
-  const dates = [
+  const [dates, setDates] = React.useState([
     "2019/07/01 - Bangkok",
     "2019/07/07 - Chiang Mai",
     "2019/07/15 - Koh Samui"
-  ]
+  ])
 
   return (
     <>
@@ -59,17 +61,6 @@ function Country(props) {
       <StyledHeader>
         <StyledCountry>{props.match.params.name}</StyledCountry>
       </StyledHeader>
-      <StyledOverview>Beiträge ({dates.length})</StyledOverview>
-      <ul>
-        {dates.map(date => {
-          return (
-            <StyledLi key={date}>
-              <StyledPlane className="fab fa-telegram-plane" />
-              <span>{date}</span>
-            </StyledLi>
-          )
-        })}
-      </ul>
       <StyledContainer>
         <Link to="/form">
           <Button>
@@ -78,6 +69,18 @@ function Country(props) {
           </Button>
         </Link>
       </StyledContainer>
+      <StyledOverview>Beiträge ({dates.length})</StyledOverview>
+      <ul>
+        {dates.map(date => {
+          return (
+            <StyledLi key={date}>
+              <StyledPlane className="fab fa-telegram-plane" />
+
+              <span>{date}</span>
+            </StyledLi>
+          )
+        })}
+      </ul>
     </>
   )
 }

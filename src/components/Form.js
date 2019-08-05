@@ -67,7 +67,8 @@ function Form() {
     event.preventDefault()
     setTitle("")
     setContent("")
-    console.log(title, content)
+    console.log("title", title)
+    console.log("content", content)
   }
 
   function handleTitleChange(event) {
@@ -99,13 +100,13 @@ function Form() {
           Text speichern
           <StyledIconSave className="fas fa-save fa-lg" />
         </Button>
-        {/* <ul>
+        <ul>
           <li>`shit dosen't work`</li>
           <li>
             {title}
             {content}
           </li>
-        </ul> */}
+        </ul>
       </StyledForm>
     </>
   )
