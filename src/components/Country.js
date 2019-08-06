@@ -31,6 +31,7 @@ const StyledOverview = styled.div`
 const StyledLi = styled.li`
   line-height: 1.8;
   list-style-type: none;
+  display: inline-block;
 `
 
 const StyledPlane = styled.i`
@@ -46,6 +47,7 @@ const StyledIconPen = styled.i`
 
 const StyledDeleteBtn = styled.i`
   color: #414141;
+  padding-left: 20px;
 `
 
 const StyledContainer = styled.div`
@@ -58,13 +60,22 @@ function Country(props) {
     JSON.parse(localStorage.getItem("experiences")) || []
   )
 
+  React.useEffect(() => {
+    localStorage.setItem("experiences", JSON.stringify(experiences))
+  }, [experiences])
+
   function handleDelete(index) {
-    setTimeout(function() {
-      setExperiences([
-        ...experiences.slice(0, index),
-        ...experiences.slice(index + 1)
-      ])
-    }, 500)
+    let sign = prompt("Wirklich löschen?")
+
+    if (sign.toLowerCase() == "ja") {
+      alert("Abenteuer entfernt!")
+      setTimeout(function() {
+        setExperiences([
+          ...experiences.slice(0, index),
+          ...experiences.slice(index + 1)
+        ])
+      }, 500)
+    }
   }
 
   return (
@@ -94,7 +105,7 @@ function Country(props) {
 
               <StyledDeleteBtn
                 onClick={() => handleDelete(index)}
-                className="fas fa-minus-circle shake"
+                className="fas fa-minus-circle shake-little"
               />
             </StyledLi>
           )

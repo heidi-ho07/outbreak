@@ -100,7 +100,6 @@ function Overview() {
         ...countries.slice(index + 1)
       ])
     }, 500)
-    console.log(countries)
   }
 
   return (
