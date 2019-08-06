@@ -60,7 +60,6 @@ const StyledIconSave = styled.i`
 `
 
 const StyledDatePicker = styled.input`
-  /* background-color: #bbded6; */
   font-family: "Cousine", monospace;
   outline: none;
   font-size: 17px;
