@@ -1,5 +1,5 @@
-import React from "react"
 import styled from "styled-components"
+import React, { useState } from "react"
 
 import headerImg from "../images/diary.png"
 import Button from "./Button"
@@ -38,7 +38,7 @@ const StyledTextarea = styled.textarea`
   font-size: 17px;
   background-color: none;
   color: #414141;
-  margin: 30px;
+  margin: 20px;
   outline: none;
   opacity: 0.6;
   ::placeholder {
@@ -59,16 +59,39 @@ const StyledIconSave = styled.i`
   margin-left: 15px;
 `
 
-function Form() {
-  const [title, setTitle] = React.useState("")
-  const [content, setContent] = React.useState("")
+const StyledDatePicker = styled.input`
+  /* background-color: #bbded6; */
+  font-family: "Cousine", monospace;
+  outline: none;
+  font-size: 17px;
+  border: 2px solid #bbded6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 80%;
+  color: #dedede;
+  text-align: center;
+`
 
-  function addNewExperience(event) {
+function Form({ history }) {
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
+  const [date, setDate] = useState("")
+
+  const [experiences, setExperiences] = React.useState(
+    JSON.parse(localStorage.getItem("experiences")) || []
+  )
+
+  React.useEffect(() => {
+    localStorage.setItem("experiences", JSON.stringify(experiences))
+  }, [experiences])
+
+  async function addNewExperience(event) {
     event.preventDefault()
     setTitle("")
     setContent("")
-    console.log("title", title)
-    console.log("content", content)
+    const newExperience = { title, content, date }
+    await setExperiences([...experiences, newExperience])
+    history.push("/country/Thailand")
   }
 
   function handleTitleChange(event) {
@@ -79,14 +102,23 @@ function Form() {
     setContent(event.target.value)
   }
 
+  function handleDateChange(event) {
+    setDate(event.target.value)
+  }
+
   return (
     <>
       <StyledImg src={headerImg} alt="dream-image" />
       <StyledForm onSubmit={addNewExperience}>
+        <StyledDatePicker
+          onChange={handleDateChange}
+          type="date"
+          value={date}
+        />
         <StyledInput
           onChange={handleTitleChange}
           type="text"
-          placeholder="Datum und Ort"
+          placeholder="Ort"
           value={title}
           name="title"
         />
@@ -100,13 +132,6 @@ function Form() {
           Text speichern
           <StyledIconSave className="fas fa-save fa-lg" />
         </Button>
-        <ul>
-          <li>`shit dosen't work`</li>
-          <li>
-            {title}
-            {content}
-          </li>
-        </ul>
       </StyledForm>
     </>
   )

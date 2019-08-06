@@ -5,7 +5,8 @@ import { Link } from "react-router-dom"
 import headerImg from "../images/overview.png"
 import Globalstyle from "../app/Globalstyles"
 import Button from "./Button"
-import Form from "./Form"
+
+const moment = require("moment")
 
 const StyledHeader = styled.div`
   background-image: url(${headerImg});
@@ -43,17 +44,28 @@ const StyledIconPen = styled.i`
   margin-left: 15px;
 `
 
+const StyledDeleteBtn = styled.i`
+  color: #414141;
+`
+
 const StyledContainer = styled.div`
   text-align: center;
   margin-bottom: 30px;
 `
 
 function Country(props) {
-  const [dates, setDates] = React.useState([
-    "2019/07/01 - Bangkok",
-    "2019/07/07 - Chiang Mai",
-    "2019/07/15 - Koh Samui"
-  ])
+  const [experiences, setExperiences] = React.useState(
+    JSON.parse(localStorage.getItem("experiences")) || []
+  )
+
+  function handleDelete(index) {
+    setTimeout(function() {
+      setExperiences([
+        ...experiences.slice(0, index),
+        ...experiences.slice(index + 1)
+      ])
+    }, 500)
+  }
 
   return (
     <>
@@ -69,14 +81,21 @@ function Country(props) {
           </Button>
         </Link>
       </StyledContainer>
-      <StyledOverview>Beiträge ({dates.length})</StyledOverview>
+      <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
       <ul>
-        {dates.map(date => {
+        {experiences.map((experience, index) => {
           return (
-            <StyledLi key={date}>
+            <StyledLi key={experience.title}>
               <StyledPlane className="fab fa-telegram-plane" />
 
-              <span>{date}</span>
+              <span>{moment(experience.date).format("ll")}</span>
+              <span> - </span>
+              <span>{experience.title}</span>
+
+              <StyledDeleteBtn
+                onClick={() => handleDelete(index)}
+                className="fas fa-minus-circle shake"
+              />
             </StyledLi>
           )
         })}
