@@ -6,7 +6,7 @@ import headerImg from "../images/overview.png"
 import Globalstyle from "../app/Globalstyles"
 import Button from "./Button"
 
-const moment = require("moment")
+import moment from "moment"
 
 const StyledHeader = styled.div`
   background-image: url(${headerImg});
@@ -68,7 +68,6 @@ function Country(props) {
     let sign = prompt("Wirklich löschen?")
 
     if (sign.toLowerCase() == "ja") {
-      alert("Abenteuer entfernt!")
       setTimeout(function() {
         setExperiences([
           ...experiences.slice(0, index),
