@@ -41,11 +41,13 @@ const StyledInput = styled.input`
   border: none;
   flex: 1;
   font-family: "Cousine", monospace;
+  outline: none;
 `
 
-const StyledCountry = styled.p`
+const StyledLink = styled(Link)`
   margin-right: 10px;
   color: #414141;
+  text-decoration: none;
 `
 
 const StyledCountryContainer = styled.div`
@@ -68,11 +70,13 @@ const StyledHeadline = styled.div`
 `
 
 function Overview() {
-  const [countries, setCountries] = useState([
-    "Australien",
-    "Thailand",
-    "Taka-Tuka-Land"
-  ])
+  const [countries, setCountries] = useState(
+    JSON.parse(localStorage.getItem("country")) || []
+  )
+
+  React.useEffect(() => {
+    localStorage.setItem("country", JSON.stringify(countries))
+  }, [countries])
 
   const [newCountry, setNewCountry] = useState("")
 
@@ -83,6 +87,7 @@ function Overview() {
   function addNewCountry(event) {
     event.preventDefault()
     setCountries([...countries, newCountry])
+
     setNewCountry("")
   }
 
@@ -119,9 +124,7 @@ function Overview() {
       {countries.map((country, index) => {
         return (
           <StyledCountryContainer key={country}>
-            <Link to={`/country/${country}`}>
-              <StyledCountry>{country}</StyledCountry>
-            </Link>
+            <StyledLink to={`/country/${country}`}>{country}</StyledLink>
             <StyledTrashIcon
               onClick={() => handleDelete(index)}
               className="fas fa-trash-alt fa-s shake"

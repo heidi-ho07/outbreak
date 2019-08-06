@@ -1,9 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-import headerImg from "../images/country.png"
+import headerImg from "../images/overview.png"
 import Globalstyle from "../app/Globalstyles"
 import Button from "./Button"
+
+import moment from "moment"
 
 const StyledHeader = styled.div`
   background-image: url(${headerImg});
@@ -13,6 +16,7 @@ const StyledHeader = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+  filter: grayscale(80%);
 `
 
 const StyledCountry = styled.h1`
@@ -27,6 +31,7 @@ const StyledOverview = styled.div`
 const StyledLi = styled.li`
   line-height: 1.8;
   list-style-type: none;
+  display: inline-block;
 `
 
 const StyledPlane = styled.i`
@@ -34,22 +39,43 @@ const StyledPlane = styled.i`
   padding-right: 40px;
 `
 const StyledIconPen = styled.i`
-  color: #414141;
+  color: white;
   border-left: 2px solid #bbded6;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
 `
 
+const StyledDeleteBtn = styled.i`
+  color: #414141;
+  padding-left: 20px;
+`
+
 const StyledContainer = styled.div`
   text-align: center;
+  margin-bottom: 30px;
 `
 
 function Country(props) {
-  const dates = [
-    "2019/07/01 - Bangkok",
-    "2019/07/07 - Chiang Mai",
-    "2019/07/15 - Koh Samui"
-  ]
+  const [experiences, setExperiences] = React.useState(
+    JSON.parse(localStorage.getItem("experiences")) || []
+  )
+
+  React.useEffect(() => {
+    localStorage.setItem("experiences", JSON.stringify(experiences))
+  }, [experiences])
+
+  function handleDelete(index) {
+    let sign = prompt("Wirklich löschen?")
+
+    if (sign.toLowerCase() == "ja") {
+      setTimeout(function() {
+        setExperiences([
+          ...experiences.slice(0, index),
+          ...experiences.slice(index + 1)
+        ])
+      }, 500)
+    }
+  }
 
   return (
     <>
@@ -57,23 +83,33 @@ function Country(props) {
       <StyledHeader>
         <StyledCountry>{props.match.params.name}</StyledCountry>
       </StyledHeader>
-      <StyledOverview>Beiträge ({dates.length})</StyledOverview>
+      <StyledContainer>
+        <Link to="/form">
+          <Button>
+            Neuer Beitrag
+            <StyledIconPen className="far fa-edit fa-lg" />
+          </Button>
+        </Link>
+      </StyledContainer>
+      <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
       <ul>
-        {dates.map(date => {
+        {experiences.map((experience, index) => {
           return (
-            <StyledLi>
+            <StyledLi key={experience.title}>
               <StyledPlane className="fab fa-telegram-plane" />
-              <span key="date">{date}</span>
+
+              <span>{moment(experience.date).format("ll")}</span>
+              <span> - </span>
+              <span>{experience.title}</span>
+
+              <StyledDeleteBtn
+                onClick={() => handleDelete(index)}
+                className="fas fa-minus-circle shake-little"
+              />
             </StyledLi>
           )
         })}
       </ul>
-      <StyledContainer>
-        <Button>
-          Neuer Beitrag
-          <StyledIconPen className="far fa-edit fa-lg" />
-        </Button>
-      </StyledContainer>
     </>
   )
 }

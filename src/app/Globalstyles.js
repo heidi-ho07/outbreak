@@ -7,9 +7,11 @@ export default createGlobalStyle`
 
     html, body {
         margin: 0;
+        margin-top: 10px;
     }
 
     body {
         font-family: 'Cousine', monospace;
+     
     }
 `
