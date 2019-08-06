@@ -96,11 +96,14 @@ function Country(props) {
         {experiences.map((experience, index) => {
           return (
             <StyledLi key={experience.title}>
-              <StyledPlane className="fab fa-telegram-plane" />
+              <Link to={`/summary/${experience.title}`}>
+                <StyledPlane className="fab fa-telegram-plane" />
 
-              <span>{moment(experience.date).format("ll")}</span>
-              <span> - </span>
-              <span>{experience.title}</span>
+                <span>{moment(experience.date).format("ll")}</span>
+                <span> - </span>
+
+                <span>{experience.title}</span>
+              </Link>
 
               <StyledDeleteBtn
                 onClick={() => handleDelete(index)}
