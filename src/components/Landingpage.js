@@ -18,6 +18,7 @@ const StyledImg = styled.img`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 5px 15px -5px #00000070;
 `
 
 const StyledContent = styled.div`

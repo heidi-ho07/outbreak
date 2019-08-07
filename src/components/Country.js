@@ -17,6 +17,7 @@ const StyledHeader = styled.div`
   align-items: center;
   margin-bottom: 50px;
   filter: grayscale(80%);
+  box-shadow: 0 5px 15px -5px #00000070;
 `
 
 const StyledCountry = styled.h1`

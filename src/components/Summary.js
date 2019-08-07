@@ -3,17 +3,12 @@ import styled from "styled-components"
 
 import headerImg from "../images/summary.png"
 
-const StyledImg = styled.img`
-  height: 100%;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`
 const StyledText = styled.div`
   border: 2px solid #bbded6;
   border-radius: 5px;
   padding: 20px;
   margin: 15px;
+  box-shadow: 0 5px 15px -5px #00000070;
 `
 
 const StyledHeadline = styled.h1`
@@ -29,6 +24,7 @@ const StyledHeader = styled.div`
   align-items: center;
   margin-bottom: 50px;
   filter: grayscale(20%);
+  box-shadow: 0 5px 15px -5px #00000070;
 `
 
 function Summary(props) {
@@ -36,7 +32,6 @@ function Summary(props) {
     <>
       <StyledHeader>
         <StyledHeadline>{props.match.params.title}</StyledHeadline>
-        {/* <StyledImg src={headerImg} alt="summary image" /> */}
       </StyledHeader>
       <StyledText>
         Traveler traveler blogger, expedition expedition modern Travel cute
