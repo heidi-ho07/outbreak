@@ -8,6 +8,7 @@ import Overview from "../components/Overview"
 import Country from "../components/Country"
 import Form from "../components/Form"
 import Summary from "../components/Summary"
+import Footer from "../components/Footer"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/form" component={Form} />
           <Route exact path="/summary/:title" component={Summary} />
         </Switch>
+        <Footer />
       </Router>
     </>
   )
