@@ -8,7 +8,7 @@ import Overview from "../components/Overview"
 import Country from "../components/Country"
 import Form from "../components/Form"
 import Summary from "../components/Summary"
-import Footer from "../components/Footer"
+// import Footer from "../components/Footer"
 
 function App() {
   return (
@@ -21,9 +21,9 @@ function App() {
           <Route exact path="/overview" component={Overview} />
           <Route exact path="/country/:name" component={Country} />
           <Route exact path="/form" component={Form} />
-          <Route exact path="/summary/:title" component={Summary} />
+          <Route exact path="/summary/:id" component={Summary} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </>
   )

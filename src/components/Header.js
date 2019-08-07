@@ -5,8 +5,10 @@ import { Link } from "react-router-dom"
 import logo from "../images/outbreak-logo.png"
 
 const StyledHeader = styled.img`
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 const StyledContainer = styled.div`
   display: flex;

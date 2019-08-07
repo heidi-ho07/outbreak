@@ -28,19 +28,18 @@ const StyledHeader = styled.div`
 `
 
 function Summary(props) {
+  const [experience] = React.useState(
+    JSON.parse(localStorage.getItem("experiences")).filter(experience => {
+      return experience.id === props.match.params.id
+    })[0] || []
+  )
+
   return (
     <>
       <StyledHeader>
-        <StyledHeadline>{props.match.params.title}</StyledHeadline>
+        <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
-      <StyledText>
-        Traveler traveler blogger, expedition expedition modern Travel cute
-        wanderlust website. Cute modern organized, travelblogger modern
-        WordPress traveler fun cute excursion. Theme whimsical clean adventure
-        traveling traveler website modern fun. Design travelblogger blogger
-        colorful, traveler pretty blogger expedition website website. Whimsical
-        excursion modern fun adventure travelblogger Travel modern pretty.
-      </StyledText>
+      <StyledText>{experience.content}</StyledText>
     </>
   )
 }

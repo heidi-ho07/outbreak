@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import React, { useState } from "react"
+import uuidv1 from "uuid/v1"
 
 import headerImg from "../images/diary.png"
 import Button from "./Button"
@@ -93,7 +94,7 @@ function Form({ history }) {
     event.preventDefault()
     setTitle("")
     setContent("")
-    const newExperience = { title, content, date }
+    const newExperience = { title, content, date, id: uuidv1() }
     await setExperiences([...experiences, newExperience])
     history.push("/country/Thailand")
   }

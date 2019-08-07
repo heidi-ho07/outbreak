@@ -37,7 +37,8 @@ const StyledLi = styled.li`
 
 const StyledPlane = styled.i`
   color: #414141;
-  padding-right: 40px;
+  padding-right: 30px;
+  padding-left: 20px;
 `
 const StyledIconPen = styled.i`
   color: white;
@@ -96,8 +97,8 @@ function Country(props) {
       <ul>
         {experiences.map((experience, index) => {
           return (
-            <StyledLi key={experience.title}>
-              <Link to={`/summary/${experience.title}`}>
+            <StyledLi key={experience.id}>
+              <Link to={`/summary/${experience.id}`}>
                 <StyledPlane className="fab fa-telegram-plane" />
 
                 <span>{moment(experience.date).format("ll")}</span>
