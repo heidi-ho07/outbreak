@@ -16,7 +16,6 @@ const StyledHeader = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-  filter: grayscale(80%);
   box-shadow: 0 5px 15px -5px #00000070;
 `
 
@@ -69,7 +68,7 @@ function Country(props) {
   function handleDelete(index) {
     let sign = prompt("Wirklich löschen?")
 
-    if (sign.toLowerCase() == "ja") {
+    if (sign.toLowerCase() === "ja") {
       setTimeout(function() {
         setExperiences([
           ...experiences.slice(0, index),

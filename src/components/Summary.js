@@ -4,11 +4,11 @@ import styled from "styled-components"
 import headerImg from "../images/summary.png"
 
 const StyledText = styled.div`
-  border: 2px solid #bbded6;
+  border: 2px solid #8bbabb;
   border-radius: 5px;
   padding: 20px;
   margin: 15px;
-  box-shadow: 0 5px 15px -5px #00000070;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
 `
 
 const StyledHeadline = styled.h1`

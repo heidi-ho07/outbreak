@@ -15,7 +15,7 @@ const StyledImg = styled.img`
 `
 
 const StyledInput = styled.input`
-  border: 2px solid #bbded6;
+  border: 2px solid #8bbabb;
   border-radius: 5px;
   font-family: "Cousine", monospace;
   font-size: 17px;
@@ -24,7 +24,7 @@ const StyledInput = styled.input`
   outline: none;
   opacity: 0.6;
   color: #414141;
-  box-shadow: 0 5px 15px -5px #00000070;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
   ::placeholder {
     font-size: 19px;
     color: #dedede;
@@ -33,7 +33,7 @@ const StyledInput = styled.input`
 `
 
 const StyledTextarea = styled.textarea`
-  border: 2px solid #bbded6;
+  border: 2px solid #8bbabb;
   border-radius: 5px;
   width: 80%;
   height: 300px;
@@ -44,7 +44,7 @@ const StyledTextarea = styled.textarea`
   margin: 20px;
   outline: none;
   opacity: 0.6;
-  box-shadow: 0 5px 15px -5px #00000070;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
   ::placeholder {
     font-size: 19px;
     color: #dedede;
@@ -67,14 +67,14 @@ const StyledDatePicker = styled.input`
   font-family: "Cousine", monospace;
   outline: none;
   font-size: 17px;
-  border: 2px solid #bbded6;
+  border: 2px solid #8bbabb;
   border-radius: 5px;
   margin-bottom: 10px;
   width: 80%;
   color: #dedede;
   opacity: 0.6;
   text-align: center;
-  box-shadow: 0 5px 15px -5px #00000070;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
 `
 
 function Form({ history }) {

@@ -28,15 +28,13 @@ const StyledContent = styled.div`
 `
 const StyledContainer = styled.div`
   padding: 18px;
-  border-top: 2px solid #414141;
-  border-bottom: 2px solid #414141;
-  border-radius: 4px;
   text-align: center;
 `
 const StyledIconPen = styled.i`
   color: white;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
+  border-left: 2px solid #bbded6;
 `
 
 function Landingpage() {
