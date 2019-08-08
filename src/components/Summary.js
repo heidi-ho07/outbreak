@@ -27,6 +27,17 @@ const StyledHeader = styled.div`
   box-shadow: 0 5px 15px -5px #00000070;
 `
 
+const StyledContainerImage = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const StyledUploadedImage = styled.img`
+  width: 345px;
+  border: 2px solid #8bbabb;
+  border-radius: 5px;
+`
+
 function Summary(props) {
   const [experience] = React.useState(
     JSON.parse(localStorage.getItem("experiences")).filter(experience => {
@@ -40,7 +51,13 @@ function Summary(props) {
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
       <StyledText>{experience.content}</StyledText>
-      <img src={experience.image} alt="" style={{ width: "100%" }} />
+      <StyledContainerImage>
+        <StyledUploadedImage
+          src={experience.image}
+          alt=""
+          // style={{ width: "100%" }}
+        />
+      </StyledContainerImage>
     </>
   )
 }

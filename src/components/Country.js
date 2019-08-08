@@ -21,6 +21,9 @@ const StyledHeader = styled.div`
 
 const StyledCountry = styled.h1`
   color: white;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 60px;
 `
 
 const StyledOverview = styled.div`
@@ -108,7 +111,7 @@ function Country(props) {
 
               <StyledDeleteBtn
                 onClick={() => handleDelete(index)}
-                className="fas fa-minus-circle shake-little"
+                className="fas fa-minus-circle shake"
               />
             </StyledLi>
           )

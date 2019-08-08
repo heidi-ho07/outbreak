@@ -78,6 +78,13 @@ const StyledDatePicker = styled.input`
   box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
 `
 
+const StyledUploadIcon = styled.i`
+  color: white;
+  padding: 5px 5px 5px 20px;
+  margin-left: 15px;
+  border-left: 2px solid #bbded6;
+`
+
 function Form({ history }) {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
@@ -115,7 +122,6 @@ function Form({ history }) {
 
   const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
   const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
-  console.log(CLOUDNAME)
 
   function upload(event) {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
@@ -164,14 +170,18 @@ function Form({ history }) {
           Text speichern
           <StyledIconSave className="fas fa-save fa-lg" />
         </Button>
+
+        {/* <div>
+          {image ? (
+            <img src={image} alt="" style={{ width: "100%" }} />
+          ) : (
+            <input type="file" name="file" onChange={upload} />
+          )}
+        </div> */}
+        <input type="file" onChange={upload} />
+        <StyledUploadIcon className="fas fa-camera fa-lg" />
+        <img src={image} alt="" style={{ width: "100%" }} />
       </StyledForm>
-      <div>
-        {image ? (
-          <img src={image} alt="" style={{ width: "100%" }} />
-        ) : (
-          <input type="file" name="file" onChange={upload} />
-        )}
-      </div>
     </>
   )
 }
