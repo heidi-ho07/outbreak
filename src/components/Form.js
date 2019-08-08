@@ -79,10 +79,16 @@ const StyledDatePicker = styled.input`
 `
 
 const StyledUploadIcon = styled.i`
-  color: white;
-  padding: 5px 5px 5px 20px;
-  margin-left: 15px;
-  border-left: 2px solid #bbded6;
+  color: #8bbabb;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
+  margin-left: 7px;
+`
+
+const StyledBtnContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 `
 
 function Form({ history }) {
@@ -166,22 +172,23 @@ function Form({ history }) {
           value={content}
           name="content"
         />
+      </StyledForm>
+      <StyledBtnContainer>
         <Button>
           Text speichern
           <StyledIconSave className="fas fa-save fa-lg" />
         </Button>
 
-        {/* <div>
-          {image ? (
-            <img src={image} alt="" style={{ width: "100%" }} />
-          ) : (
-            <input type="file" name="file" onChange={upload} />
-          )}
-        </div> */}
-        <input type="file" onChange={upload} />
-        <StyledUploadIcon className="fas fa-camera fa-lg" />
-        <img src={image} alt="" style={{ width: "100%" }} />
-      </StyledForm>
+        <input
+          onChange={upload}
+          style={{ display: "none" }}
+          id="raised-button-file"
+          type="file"
+        />
+        <label htmlFor="raised-button-file">
+          <StyledUploadIcon className="far fa-image fa-3x" />
+        </label>
+      </StyledBtnContainer>
     </>
   )
 }
