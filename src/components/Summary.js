@@ -40,6 +40,7 @@ function Summary(props) {
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
       <StyledText>{experience.content}</StyledText>
+      <img src={experience.image} alt="" style={{ width: "100%" }} />
     </>
   )
 }

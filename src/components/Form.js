@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import React, { useState } from "react"
 import uuidv1 from "uuid/v1"
+import axios from "axios"
 
 import headerImg from "../images/diary.png"
 import Button from "./Button"
@@ -81,6 +82,7 @@ function Form({ history }) {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [date, setDate] = useState("")
+  const [image, setImage] = useState("")
 
   const [experiences, setExperiences] = React.useState(
     JSON.parse(localStorage.getItem("experiences")) || []
@@ -94,7 +96,7 @@ function Form({ history }) {
     event.preventDefault()
     setTitle("")
     setContent("")
-    const newExperience = { title, content, date, id: uuidv1() }
+    const newExperience = { title, content, date, image, id: uuidv1() }
     await setExperiences([...experiences, newExperience])
     history.push("/country/Thailand")
   }
@@ -109,6 +111,31 @@ function Form({ history }) {
 
   function handleDateChange(event) {
     setDate(event.target.value)
+  }
+
+  const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
+  const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
+  console.log(CLOUDNAME)
+
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
+
+    const formData = new FormData()
+    formData.append("file", event.target.files[0])
+    formData.append("upload_preset", PRESET)
+
+    axios
+      .post(url, formData, {
+        headers: {
+          "Content-type": "multipart/form-data"
+        }
+      })
+      .then(onImageSave)
+      .catch(err => console.error(err))
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url)
   }
 
   return (
@@ -138,6 +165,13 @@ function Form({ history }) {
           <StyledIconSave className="fas fa-save fa-lg" />
         </Button>
       </StyledForm>
+      <div>
+        {image ? (
+          <img src={image} alt="" style={{ width: "100%" }} />
+        ) : (
+          <input type="file" name="file" onChange={upload} />
+        )}
+      </div>
     </>
   )
 }
