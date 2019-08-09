@@ -172,23 +172,24 @@ function Form({ history }) {
           value={content}
           name="content"
         />
-      </StyledForm>
-      <StyledBtnContainer>
-        <Button>
-          Text speichern
-          <StyledIconSave className="fas fa-save fa-lg" />
-        </Button>
+        <StyledBtnContainer>
+          <Button>
+            Text speichern
+            <StyledIconSave className="fas fa-save fa-lg" />
+          </Button>
 
-        <input
-          onChange={upload}
-          style={{ display: "none" }}
-          id="raised-button-file"
-          type="file"
-        />
-        <label htmlFor="raised-button-file">
-          <StyledUploadIcon className="far fa-image fa-3x" />
-        </label>
-      </StyledBtnContainer>
+          <input
+            onChange={upload}
+            style={{ display: "none" }}
+            id="raised-button-file"
+            type="file"
+          />
+          <label htmlFor="raised-button-file">
+            <StyledUploadIcon className="far fa-image fa-3x" />
+          </label>
+        </StyledBtnContainer>
+      </StyledForm>
+      <img src={image} alt="" style={{ width: "100%" }} />
     </>
   )
 }

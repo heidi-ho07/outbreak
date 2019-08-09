@@ -52,11 +52,7 @@ function Summary(props) {
       </StyledHeader>
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
-        <StyledUploadedImage
-          src={experience.image}
-          alt=""
-          // style={{ width: "100%" }}
-        />
+        <StyledUploadedImage src={experience.image} alt="" />
       </StyledContainerImage>
     </>
   )
