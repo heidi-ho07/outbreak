@@ -9,6 +9,7 @@ const StyledImg = styled.img`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 5px 15px -5px #00000070;
 `
 
 const StyledContent = styled.p`
@@ -39,9 +40,13 @@ const StyledContainer = styled.div`
 
 const StyledInput = styled.input`
   border: none;
-  flex: 1;
+  /* flex: 1; */
   font-family: "Cousine", monospace;
   outline: none;
+  padding-right: 30px;
+  ::placeholder {
+    font-size: 14px;
+  }
 `
 
 const StyledLink = styled(Link)`
@@ -56,10 +61,10 @@ const StyledCountryContainer = styled.div`
   justify-content: space-between;
   padding: 0 80px;
   margin: 10px;
+  font-size: 18px;
 `
 
 const StyledInputContainer = styled.div`
-  border-bottom: 1px solid #ddd;
   display: flex;
   flex-direction: row;
   margin: 0 65px;
@@ -67,6 +72,9 @@ const StyledInputContainer = styled.div`
 
 const StyledHeadline = styled.div`
   margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #414141;
 `
 
 function Overview() {
@@ -117,7 +125,7 @@ function Overview() {
             placeholder="Land hinzufügen"
           />
           <StyledSearchBtn type="submit">
-            <StyledFolderIcon className="fas fa-folder-plus fa-2x" />
+            <StyledFolderIcon className="fas fa-plus-square fa-2x" />
           </StyledSearchBtn>
         </StyledInputContainer>
       </form>

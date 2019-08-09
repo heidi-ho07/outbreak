@@ -16,16 +16,20 @@ const StyledHeader = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-  filter: grayscale(80%);
+  box-shadow: 0 5px 15px -5px #00000070;
 `
 
 const StyledCountry = styled.h1`
   color: white;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 60px;
 `
 
 const StyledOverview = styled.div`
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
 `
 
 const StyledLi = styled.li`
@@ -36,7 +40,8 @@ const StyledLi = styled.li`
 
 const StyledPlane = styled.i`
   color: #414141;
-  padding-right: 40px;
+  padding-right: 30px;
+  padding-left: 20px;
 `
 const StyledIconPen = styled.i`
   color: white;
@@ -67,7 +72,7 @@ function Country(props) {
   function handleDelete(index) {
     let sign = prompt("Wirklich löschen?")
 
-    if (sign.toLowerCase() == "ja") {
+    if (sign.toLowerCase() === "ja") {
       setTimeout(function() {
         setExperiences([
           ...experiences.slice(0, index),
@@ -95,16 +100,19 @@ function Country(props) {
       <ul>
         {experiences.map((experience, index) => {
           return (
-            <StyledLi key={experience.title}>
-              <StyledPlane className="fab fa-telegram-plane" />
+            <StyledLi key={experience.id}>
+              <Link to={`/summary/${experience.id}`}>
+                <StyledPlane className="fab fa-telegram-plane" />
 
-              <span>{moment(experience.date).format("ll")}</span>
-              <span> - </span>
-              <span>{experience.title}</span>
+                <span>{moment(experience.date).format("ll")}</span>
+                <span> - </span>
+
+                <span>{experience.title}</span>
+              </Link>
 
               <StyledDeleteBtn
                 onClick={() => handleDelete(index)}
-                className="fas fa-minus-circle shake-little"
+                className="fas fa-minus-circle shake"
               />
             </StyledLi>
           )
