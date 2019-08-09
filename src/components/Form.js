@@ -11,7 +11,6 @@ const StyledImg = styled.img`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
-  opacity: 0.7;
   box-shadow: 0 5px 15px -5px #00000070;
 `
 
@@ -23,7 +22,6 @@ const StyledInput = styled.input`
   width: 80%;
   height: 30px;
   outline: none;
-  opacity: 0.6;
   color: #414141;
   box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
   ::placeholder {
@@ -44,8 +42,8 @@ const StyledTextarea = styled.textarea`
   color: #414141;
   margin: 20px;
   outline: none;
-  opacity: 0.6;
   box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  padding: 20px;
   ::placeholder {
     font-size: 19px;
     color: #dedede;
@@ -73,7 +71,6 @@ const StyledDatePicker = styled.input`
   margin-bottom: 10px;
   width: 80%;
   color: #dedede;
-  opacity: 0.6;
   text-align: center;
   box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
 `

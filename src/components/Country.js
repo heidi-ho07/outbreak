@@ -28,7 +28,8 @@ const StyledCountry = styled.h1`
 
 const StyledOverview = styled.div`
   text-align: center;
-  font-size: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
 `
 
 const StyledLi = styled.li`
