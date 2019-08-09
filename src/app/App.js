@@ -16,7 +16,7 @@ function App() {
     <>
       <GlobalStyles />
       <Router>
-        <Header />
+        {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/home" component={Home} />
