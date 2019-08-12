@@ -34,18 +34,10 @@ function Landingpage() {
       <StyledContainer>
         <Link to="/home">
           <div>
-            <StyledBackpacker
-              className="animated bounce out left delay-3s"
-              src={backpacker}
-              alt="running-backpacker"
-            />
+            <StyledBackpacker src={backpacker} alt="running-backpacker" />
           </div>
           <div>
-            <StyledLogo
-              className="animated infinite bounce delay-2s"
-              src={logo}
-              alt="logo-squares"
-            />
+            <StyledLogo src={logo} alt="logo-squares" />
           </div>
         </Link>
       </StyledContainer>
