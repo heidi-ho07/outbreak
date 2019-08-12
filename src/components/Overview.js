@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+import Header from "./Header"
 import headerImg from "../images/Reisetagebuch.png"
 
 const StyledImg = styled.img`
@@ -112,6 +113,7 @@ function Overview() {
 
   return (
     <StyledContainer>
+      <Header />
       <StyledImg src={headerImg} alt="travel-diary image" />
       <StyledHeadline>
         <StyledContent>Übersicht meiner Länder</StyledContent>

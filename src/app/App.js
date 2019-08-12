@@ -1,5 +1,10 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  withRouter
+} from "react-router-dom"
 
 import GlobalStyles from "../app/Globalstyles"
 import Header from "../components/Header"
@@ -11,12 +16,11 @@ import Form from "../components/Form"
 import Summary from "../components/Summary"
 // import Footer from "../components/Footer"
 
-function App() {
+function App(props) {
   return (
     <>
       <GlobalStyles />
       <Router>
-        {/* <Header /> */}
         <Switch>
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/home" component={Home} />
@@ -31,4 +35,4 @@ function App() {
   )
 }
 
-export default App
+export default withRouter(App)

@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
 `
 
-function Header() {
+function Header(props) {
   return (
     <StyledContainer>
       <Link to="/">

@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import uuidv1 from "uuid/v1"
 import axios from "axios"
 
+import Header from "./Header"
 import headerImg from "../images/diary.png"
 import Button from "./Button"
 
@@ -149,6 +150,7 @@ function Form({ history }) {
 
   return (
     <>
+      <Header />
       <StyledImg src={headerImg} alt="dream-image" />
       <StyledForm onSubmit={addNewExperience}>
         <StyledDatePicker

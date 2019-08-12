@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 
 import headerImg from "../images/dream.png"
 import Button from "./Button"
+import Header from "./Header"
 
 const StyledHeader = styled.h1`
   margin: 0;
@@ -44,6 +45,7 @@ const StyledIconPen = styled.i`
 function Home() {
   return (
     <>
+      <Header />
       <StyledImg src={headerImg} alt="dream-image" />
       <StyledContainer>
         <StyledHeader>Welcome to Outbreak</StyledHeader>

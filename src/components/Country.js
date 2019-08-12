@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+import Header from "./Header"
 import headerImg from "../images/overview.png"
 import Globalstyle from "../app/Globalstyles"
 import Button from "./Button"
@@ -85,6 +86,7 @@ function Country(props) {
   return (
     <>
       <Globalstyle />
+      <Header />
       <StyledHeader>
         <StyledCountry>{props.match.params.name}</StyledCountry>
       </StyledHeader>

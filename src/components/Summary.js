@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
+import Header from "./Header"
 import headerImg from "../images/summary.png"
 
 const StyledText = styled.div`
@@ -47,6 +48,7 @@ function Summary(props) {
 
   return (
     <>
+      <Header />
       <StyledHeader>
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
