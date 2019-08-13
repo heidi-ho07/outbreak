@@ -27,7 +27,7 @@ const StyledImg = styled.img`
 const StyledContent = styled.div`
   font-size: 1em;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   line-height: 1.5;
   color: #414141;
 `
