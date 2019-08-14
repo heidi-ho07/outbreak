@@ -112,37 +112,39 @@ function Overview() {
   }
 
   return (
-    <StyledContainer>
+    <>
       <Header />
-      <StyledImg src={headerImg} alt="travel-diary image" />
-      <StyledHeadline>
-        <StyledContent>Übersicht meiner Länder</StyledContent>
-      </StyledHeadline>
-      <form onSubmit={addNewCountry}>
-        <StyledInputContainer>
-          <StyledInput
-            value={newCountry}
-            onChange={handleChange}
-            type="search"
-            placeholder="Land hinzufügen"
-          />
-          <StyledSearchBtn type="submit">
-            <StyledFolderIcon className="fas fa-plus-square fa-2x" />
-          </StyledSearchBtn>
-        </StyledInputContainer>
-      </form>
-      {countries.map((country, index) => {
-        return (
-          <StyledCountryContainer key={country}>
-            <StyledLink to={`/country/${country}`}>{country}</StyledLink>
-            <StyledTrashIcon
-              onClick={() => handleDelete(index)}
-              className="fas fa-trash-alt fa-s shake"
+      <StyledContainer>
+        <StyledImg src={headerImg} alt="travel-diary image" />
+        <StyledHeadline>
+          <StyledContent>Übersicht meiner Länder</StyledContent>
+        </StyledHeadline>
+        <form onSubmit={addNewCountry}>
+          <StyledInputContainer>
+            <StyledInput
+              value={newCountry}
+              onChange={handleChange}
+              type="search"
+              placeholder="Land hinzufügen"
             />
-          </StyledCountryContainer>
-        )
-      })}
-    </StyledContainer>
+            <StyledSearchBtn type="submit">
+              <StyledFolderIcon className="fas fa-plus-square fa-2x" />
+            </StyledSearchBtn>
+          </StyledInputContainer>
+        </form>
+        {countries.map((country, index) => {
+          return (
+            <StyledCountryContainer key={country}>
+              <StyledLink to={`/country/${country}`}>{country}</StyledLink>
+              <StyledTrashIcon
+                onClick={() => handleDelete(index)}
+                className="fas fa-trash-alt fa-s shake"
+              />
+            </StyledCountryContainer>
+          )
+        })}
+      </StyledContainer>
+    </>
   )
 }
 

@@ -33,10 +33,12 @@ const StyledOverview = styled.div`
   margin-bottom: 20px;
 `
 
-const StyledLi = styled.li`
+const StyledLink = styled(Link)`
   line-height: 1.8;
   list-style-type: none;
   display: inline-block;
+  text-decoration: none;
+  color: #414141;
 `
 
 const StyledPlane = styled.i`
@@ -99,27 +101,27 @@ function Country(props) {
         </Link>
       </StyledContainer>
       <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
-      <ul>
+      {/* <ul> */}
         {experiences.map((experience, index) => {
           return (
-            <StyledLi key={experience.id}>
-              <Link to={`/summary/${experience.id}`}>
+            <div key={experience.id} style={{display: 'flex', alignItems: "center"}}>
+              <StyledLink to={`/summary/${experience.id}`}>
                 <StyledPlane className="fab fa-telegram-plane" />
 
                 <span>{moment(experience.date).format("ll")}</span>
                 <span> - </span>
 
                 <span>{experience.title}</span>
-              </Link>
+              </StyledLink>
 
               <StyledDeleteBtn
                 onClick={() => handleDelete(index)}
                 className="fas fa-minus-circle shake"
               />
-            </StyledLi>
+            </div>
           )
         })}
-      </ul>
+      {/* </ul> */}
     </>
   )
 }
