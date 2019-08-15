@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 import Header from "./Header"
 import Button from "./Button"
@@ -40,12 +41,23 @@ const StyledUploadedImage = styled.img`
   border-radius: 5px;
 `
 
+const StyledIconPen = styled.i`
+text-decoration: none;
+color: white;
+`
+
 function Summary(props) {
+
   const [experience] = React.useState(
-    JSON.parse(localStorage.getItem("experiences")).filter(experience => {
+    JSON.parse(localStorage.getItem("experiences")).find(experience => {
       return experience.id === props.match.params.id
-    })[0] || []
+    })
   )
+
+  function handleClick(event) {
+    event.preventDefault()
+    props.history.push(`/form/edit/${experience.id}`)
+  }
 
   return (
     <>
@@ -53,8 +65,12 @@ function Summary(props) {
       <StyledHeader>
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
-      <Button>
-      <i className="fas fa-pencil-alt fa-lg" /></Button>
+      <Link to="/form">
+        <Button onClick={handleClick}>Bearbeiten
+          <StyledIconPen className="fas fa-pencil-alt fa-lg"  />
+        </Button>
+      </Link>
+      
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />

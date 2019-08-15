@@ -89,27 +89,47 @@ const StyledBtnContainer = styled.div`
   margin-bottom: 10px;
 `
 
-function Form({ history }) {
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [date, setDate] = useState("")
-  const [image, setImage] = useState("")
-
+function Form({ history, match}) {
   const [experiences, setExperiences] = React.useState(
     JSON.parse(localStorage.getItem("experiences")) || []
   )
 
+  const experience =
+    experiences.find(experience => {
+      return experience.id === match.params.id
+    })
+
+  const [title, setTitle] = useState((experience && experience.title) || "")
+  const [content, setContent] = useState((experience && experience.content) || "")
+  const [date, setDate] = useState((experience && experience.date) || "")
+  const [image, setImage] = useState((experience && experience.image) || "")
+
+  
   React.useEffect(() => {
     localStorage.setItem("experiences", JSON.stringify(experiences))
   }, [experiences])
 
   async function addNewExperience(event) {
     event.preventDefault()
+
+    if(experience) {
+      const index = experiences.findIndex(item => item.id === experience.id);
+      await setExperiences([...experiences.slice(0, index), {
+        ...experience,
+        title, content, date, image
+      }, ...experiences.slice(index + 1)])
+    } else {
+      const newExperience = { title, content, date, image, id: uuidv1() }
+      await setExperiences([...experiences, newExperience])
+      console.log(newExperience)
+    }
+
+    
+
     setTitle("")
     setContent("")
-    const newExperience = { title, content, date, image, id: uuidv1() }
-    await setExperiences([...experiences, newExperience])
-    history.push("/country/Thailand")
+    
+    history.push("/country/Thailand") // Todo: go last country
   }
 
   function handleTitleChange(event) {

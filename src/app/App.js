@@ -28,6 +28,7 @@ function App(props) {
           <Route exact path="/overview" component={Overview} />
           <Route exact path="/country/:name" component={Country} />
           <Route exact path="/form" component={Form} />
+          <Route exact path="/form/edit/:id" component={Form} />
           <Route exact path="/summary/:id" component={Summary} />
         </Switch>
         {/* <Footer /> */}
