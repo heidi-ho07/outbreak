@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import Header from "./Header"
+import Button from "./Button"
 import headerImg from "../images/summary.png"
 
 const StyledText = styled.div`
@@ -52,6 +53,8 @@ function Summary(props) {
       <StyledHeader>
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
+      <Button>
+      <i className="fas fa-pencil-alt fa-lg" /></Button>
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />

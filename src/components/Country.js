@@ -116,7 +116,7 @@ function Country(props) {
 
               <StyledDeleteBtn
                 onClick={() => handleDelete(index)}
-                className="fas fa-minus-circle shake"
+                className="fas fa-trash-alt fa-s shake"
               />
             </div>
           )

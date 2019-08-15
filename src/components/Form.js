@@ -131,11 +131,13 @@ function Form({ history }) {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
 
     const formData = new FormData()
+
+
     formData.append("file", event.target.files[0])
     formData.append("upload_preset", PRESET)
 
     axios
-      .post(url, formData, {
+      .post(url, formData,{
         headers: {
           "Content-type": "multipart/form-data"
         }
@@ -145,6 +147,8 @@ function Form({ history }) {
   }
 
   function onImageSave(response) {
+
+    alert("Foto wird geladen")
     setImage(response.data.url)
   }
 
