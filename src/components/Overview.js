@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+import Header from "./Header"
 import headerImg from "../images/Reisetagebuch.png"
 
 const StyledImg = styled.img`
@@ -13,7 +14,7 @@ const StyledImg = styled.img`
 `
 
 const StyledContent = styled.p`
-  font-size: 1em;
+  font-size: 20px;
   padding: 10px;
   display: inline;
 `
@@ -40,7 +41,7 @@ const StyledContainer = styled.div`
 
 const StyledInput = styled.input`
   border: none;
-  /* flex: 1; */
+  font-size: 16px;
   font-family: "Cousine", monospace;
   outline: none;
   padding-right: 30px;
@@ -111,36 +112,39 @@ function Overview() {
   }
 
   return (
-    <StyledContainer>
-      <StyledImg src={headerImg} alt="travel-diary image" />
-      <StyledHeadline>
-        <StyledContent>Übersicht meiner Länder</StyledContent>
-      </StyledHeadline>
-      <form onSubmit={addNewCountry}>
-        <StyledInputContainer>
-          <StyledInput
-            value={newCountry}
-            onChange={handleChange}
-            type="search"
-            placeholder="Land hinzufügen"
-          />
-          <StyledSearchBtn type="submit">
-            <StyledFolderIcon className="fas fa-plus-square fa-2x" />
-          </StyledSearchBtn>
-        </StyledInputContainer>
-      </form>
-      {countries.map((country, index) => {
-        return (
-          <StyledCountryContainer key={country}>
-            <StyledLink to={`/country/${country}`}>{country}</StyledLink>
-            <StyledTrashIcon
-              onClick={() => handleDelete(index)}
-              className="fas fa-trash-alt fa-s shake"
+    <>
+      <Header />
+      <StyledContainer>
+        <StyledImg src={headerImg} alt="travel-diary image" />
+        <StyledHeadline>
+          <StyledContent>Übersicht meiner Länder</StyledContent>
+        </StyledHeadline>
+        <form onSubmit={addNewCountry}>
+          <StyledInputContainer>
+            <StyledInput
+              value={newCountry}
+              onChange={handleChange}
+              type="search"
+              placeholder="Land hinzufügen"
             />
-          </StyledCountryContainer>
-        )
-      })}
-    </StyledContainer>
+            <StyledSearchBtn type="submit">
+              <StyledFolderIcon className="fas fa-plus-square fa-2x" />
+            </StyledSearchBtn>
+          </StyledInputContainer>
+        </form>
+        {countries.map((country, index) => {
+          return (
+            <StyledCountryContainer key={country}>
+              <StyledLink to={`/country/${country}`}>{country}</StyledLink>
+              <StyledTrashIcon
+                onClick={() => handleDelete(index)}
+                className="fas fa-trash-alt fa-s shake"
+              />
+            </StyledCountryContainer>
+          )
+        })}
+      </StyledContainer>
+    </>
   )
 }
 

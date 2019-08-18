@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+import Header from "./Header"
 import headerImg from "../images/overview.png"
 import Globalstyle from "../app/Globalstyles"
 import Button from "./Button"
@@ -20,7 +21,7 @@ const StyledHeader = styled.div`
 `
 
 const StyledCountry = styled.h1`
-  color: white;
+  color: #eae9e9;
   font-family: "Dancing Script", cursive;
   font-weight: 700;
   font-size: 60px;
@@ -32,10 +33,12 @@ const StyledOverview = styled.div`
   margin-bottom: 20px;
 `
 
-const StyledLi = styled.li`
+const StyledLink = styled(Link)`
   line-height: 1.8;
   list-style-type: none;
   display: inline-block;
+  text-decoration: none;
+  color: #414141;
 `
 
 const StyledPlane = styled.i`
@@ -45,7 +48,7 @@ const StyledPlane = styled.i`
 `
 const StyledIconPen = styled.i`
   color: white;
-  border-left: 2px solid #bbded6;
+  border-left: 2px solid white;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
 `
@@ -85,6 +88,7 @@ function Country(props) {
   return (
     <>
       <Globalstyle />
+      <Header />
       <StyledHeader>
         <StyledCountry>{props.match.params.name}</StyledCountry>
       </StyledHeader>
@@ -97,27 +101,28 @@ function Country(props) {
         </Link>
       </StyledContainer>
       <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
-      <ul>
-        {experiences.map((experience, index) => {
-          return (
-            <StyledLi key={experience.id}>
-              <Link to={`/summary/${experience.id}`}>
-                <StyledPlane className="fab fa-telegram-plane" />
+      {experiences.map((experience, index) => {
+        return (
+          <div
+            key={experience.id}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <StyledLink to={`/summary/${experience.id}`}>
+              <StyledPlane className="fab fa-telegram-plane" />
 
-                <span>{moment(experience.date).format("ll")}</span>
-                <span> - </span>
+              <span>{moment(experience.date).format("ll")}</span>
+              <span> - </span>
 
-                <span>{experience.title}</span>
-              </Link>
+              <span>{experience.title}</span>
+            </StyledLink>
 
-              <StyledDeleteBtn
-                onClick={() => handleDelete(index)}
-                className="fas fa-minus-circle shake"
-              />
-            </StyledLi>
-          )
-        })}
-      </ul>
+            <StyledDeleteBtn
+              onClick={() => handleDelete(index)}
+              className="fas fa-trash-alt fa-s shake"
+            />
+          </div>
+        )
+      })}
     </>
   )
 }

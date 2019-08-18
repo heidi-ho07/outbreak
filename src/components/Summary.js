@@ -1,6 +1,9 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
+import Header from "./Header"
+import Button from "./Button"
 import headerImg from "../images/summary.png"
 
 const StyledText = styled.div`
@@ -13,6 +16,9 @@ const StyledText = styled.div`
 
 const StyledHeadline = styled.h1`
   color: white;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 60px;
 `
 
 const StyledHeader = styled.div`
@@ -38,18 +44,40 @@ const StyledUploadedImage = styled.img`
   border-radius: 5px;
 `
 
+const StyledIconPen = styled.i`
+  text-decoration: none;
+  color: white;
+`
+
+const StyledButton = styled(Button)`
+  margin-left: 18px;
+`
+
 function Summary(props) {
   const [experience] = React.useState(
-    JSON.parse(localStorage.getItem("experiences")).filter(experience => {
+    JSON.parse(localStorage.getItem("experiences")).find(experience => {
       return experience.id === props.match.params.id
-    })[0] || []
+    })
   )
+
+  function handleClick(event) {
+    event.preventDefault()
+    props.history.push(`/form/edit/${experience.id}`)
+  }
 
   return (
     <>
+      <Header />
       <StyledHeader>
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
+      <Link to="/form">
+        <StyledButton onClick={handleClick}>
+          Bearbeiten
+          <StyledIconPen className="fas fa-pencil-alt fa-lg" />
+        </StyledButton>
+      </Link>
+
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />

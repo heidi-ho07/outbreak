@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import uuidv1 from "uuid/v1"
 import axios from "axios"
 
+import Header from "./Header"
 import headerImg from "../images/diary.png"
 import Button from "./Button"
 
@@ -57,7 +58,7 @@ const StyledForm = styled.form`
 
 const StyledIconSave = styled.i`
   color: white;
-  border-left: 2px solid #bbded6;
+  border-left: 2px solid white;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
 `
@@ -88,15 +89,21 @@ const StyledBtnContainer = styled.div`
   margin-bottom: 10px;
 `
 
-function Form({ history }) {
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [date, setDate] = useState("")
-  const [image, setImage] = useState("")
-
+function Form({ history, match }) {
   const [experiences, setExperiences] = React.useState(
     JSON.parse(localStorage.getItem("experiences")) || []
   )
+
+  const experience = experiences.find(experience => {
+    return experience.id === match.params.id
+  })
+
+  const [title, setTitle] = useState((experience && experience.title) || "")
+  const [content, setContent] = useState(
+    (experience && experience.content) || ""
+  )
+  const [date, setDate] = useState((experience && experience.date) || "")
+  const [image, setImage] = useState((experience && experience.image) || "")
 
   React.useEffect(() => {
     localStorage.setItem("experiences", JSON.stringify(experiences))
@@ -104,11 +111,30 @@ function Form({ history }) {
 
   async function addNewExperience(event) {
     event.preventDefault()
+
+    if (experience) {
+      const index = experiences.findIndex(item => item.id === experience.id)
+      await setExperiences([
+        ...experiences.slice(0, index),
+        {
+          ...experience,
+          title,
+          content,
+          date,
+          image
+        },
+        ...experiences.slice(index + 1)
+      ])
+    } else {
+      const newExperience = { title, content, date, image, id: uuidv1() }
+      await setExperiences([...experiences, newExperience])
+      console.log(newExperience)
+    }
+
     setTitle("")
     setContent("")
-    const newExperience = { title, content, date, image, id: uuidv1() }
-    await setExperiences([...experiences, newExperience])
-    history.push("/country/Thailand")
+
+    history.push("/country/Thailand") // Todo: go last country
   }
 
   function handleTitleChange(event) {
@@ -130,6 +156,7 @@ function Form({ history }) {
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
 
     const formData = new FormData()
+
     formData.append("file", event.target.files[0])
     formData.append("upload_preset", PRESET)
 
@@ -149,6 +176,7 @@ function Form({ history }) {
 
   return (
     <>
+      <Header />
       <StyledImg src={headerImg} alt="dream-image" />
       <StyledForm onSubmit={addNewExperience}>
         <StyledDatePicker
