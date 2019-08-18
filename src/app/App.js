@@ -7,7 +7,6 @@ import {
 } from "react-router-dom"
 
 import GlobalStyles from "../app/Globalstyles"
-// import Header from "../components/Header"
 import Landingpage from "../components/Landingpage"
 import Home from "../components/Home"
 import Overview from "../components/Overview"

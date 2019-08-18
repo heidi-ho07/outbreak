@@ -171,7 +171,6 @@ function Form({ history, match }) {
   }
 
   function onImageSave(response) {
-    alert("Foto wird geladen")
     setImage(response.data.url)
   }
 

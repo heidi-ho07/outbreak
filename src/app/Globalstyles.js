@@ -9,12 +9,9 @@ export default createGlobalStyle`
 
     html, body {
         margin: 0;
-        
     }
 
     body {
         font-family: 'Cousine', monospace;
-        
-     
     }
 `

@@ -101,7 +101,6 @@ function Country(props) {
         </Link>
       </StyledContainer>
       <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
-      {/* <ul> */}
       {experiences.map((experience, index) => {
         return (
           <div
@@ -124,7 +123,6 @@ function Country(props) {
           </div>
         )
       })}
-      {/* </ul> */}
     </>
   )
 }

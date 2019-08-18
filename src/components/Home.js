@@ -52,7 +52,6 @@ function Home() {
         <StyledContent>
           Hallo ich bin Outbreak - dein persönliches Reisetagebuch.
         </StyledContent>
-
         <StyledContent>
           Ich bin super gespannt auf deine Erlebnisse. Klicke auf den Button und
           fange an mir von deinen Abenteuern zu erzählen.
