@@ -6,7 +6,6 @@ import PropTypes from "prop-types"
 import headerImg from "../images/dream.png"
 import logo from "../images/LogoOutbreak.png"
 import Button from "./Button"
-import Header from "./Header"
 
 const StyledImgLogo = styled.div`
   display: flex;
@@ -15,14 +14,14 @@ const StyledImgLogo = styled.div`
 `
 
 const StyledImg = styled.img`
-  height: auto;
-  width: 200%;
+  height: 70vh;
+  width: 100vw;
   padding: 0;
+  object-fit: cover;
   margin-bottom: 30px;
   box-shadow: 0 5px 15px -5px #00000070;
   z-index: 1;
   position: relative;
-  display: flex;
 `
 
 const StyledLogo = styled.img`
@@ -39,7 +38,7 @@ const StyledHeader = styled.h1`
   line-height: 1.5;
   letter-spacing: 6px;
   color: #414141;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `
 
 const StyledContent = styled.div`
@@ -63,10 +62,9 @@ const StyledGlobe = styled.i`
 function Home() {
   return (
     <>
-      {/* <Header /> */}
       <StyledImgLogo>
-        <StyledImg src={headerImg} alt="dream-image" />
-        <StyledLogo src={logo} alt="dream-image" />
+        <StyledImg src={headerImg} alt="sunset-image" />
+        <StyledLogo src={logo} alt="logo" />
       </StyledImgLogo>
       <StyledContainer>
         <StyledHeader>Don't call it a dream - call it a plan</StyledHeader>
