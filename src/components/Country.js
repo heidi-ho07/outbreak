@@ -21,7 +21,7 @@ const StyledHeader = styled.div`
 `
 
 const StyledCountry = styled.h1`
-  color: white;
+  color: #eae9e9;
   font-family: "Dancing Script", cursive;
   font-weight: 700;
   font-size: 60px;
@@ -48,7 +48,7 @@ const StyledPlane = styled.i`
 `
 const StyledIconPen = styled.i`
   color: white;
-  border-left: 2px solid #bbded6;
+  border-left: 2px solid white;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
 `
@@ -102,25 +102,28 @@ function Country(props) {
       </StyledContainer>
       <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
       {/* <ul> */}
-        {experiences.map((experience, index) => {
-          return (
-            <div key={experience.id} style={{display: 'flex', alignItems: "center"}}>
-              <StyledLink to={`/summary/${experience.id}`}>
-                <StyledPlane className="fab fa-telegram-plane" />
+      {experiences.map((experience, index) => {
+        return (
+          <div
+            key={experience.id}
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <StyledLink to={`/summary/${experience.id}`}>
+              <StyledPlane className="fab fa-telegram-plane" />
 
-                <span>{moment(experience.date).format("ll")}</span>
-                <span> - </span>
+              <span>{moment(experience.date).format("ll")}</span>
+              <span> - </span>
 
-                <span>{experience.title}</span>
-              </StyledLink>
+              <span>{experience.title}</span>
+            </StyledLink>
 
-              <StyledDeleteBtn
-                onClick={() => handleDelete(index)}
-                className="fas fa-trash-alt fa-s shake"
-              />
-            </div>
-          )
-        })}
+            <StyledDeleteBtn
+              onClick={() => handleDelete(index)}
+              className="fas fa-trash-alt fa-s shake"
+            />
+          </div>
+        )
+      })}
       {/* </ul> */}
     </>
   )

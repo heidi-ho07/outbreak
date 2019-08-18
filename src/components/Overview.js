@@ -14,7 +14,7 @@ const StyledImg = styled.img`
 `
 
 const StyledContent = styled.p`
-  font-size: 1em;
+  font-size: 20px;
   padding: 10px;
   display: inline;
 `
@@ -41,7 +41,7 @@ const StyledContainer = styled.div`
 
 const StyledInput = styled.input`
   border: none;
-  /* flex: 1; */
+  font-size: 16px;
   font-family: "Cousine", monospace;
   outline: none;
   padding-right: 30px;

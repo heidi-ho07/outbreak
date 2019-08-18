@@ -39,7 +39,7 @@ const StyledIconPen = styled.i`
   color: white;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
-  border-left: 2px solid #bbded6;
+  border-left: 2px solid white;
 `
 
 function Home() {
@@ -50,7 +50,7 @@ function Home() {
       <StyledContainer>
         <StyledHeader>Welcome to Outbreak</StyledHeader>
         <StyledContent>
-          Hallo ich bin Outbreak - dein Reisetagebuch.
+          Hallo ich bin Outbreak - dein persönliches Reisetagebuch.
         </StyledContent>
 
         <StyledContent>

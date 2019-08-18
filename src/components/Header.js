@@ -22,12 +22,12 @@ const StyledContainer = styled.div`
 function Header(props) {
   return (
     <>
+      <Menu />
       <StyledContainer>
         <Link to="/">
           <StyledHeader src={logo} alt="outbreak-logo" />
         </Link>
       </StyledContainer>
-      <Menu />
     </>
   )
 }

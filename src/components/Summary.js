@@ -16,6 +16,9 @@ const StyledText = styled.div`
 
 const StyledHeadline = styled.h1`
   color: white;
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 60px;
 `
 
 const StyledHeader = styled.div`
@@ -42,12 +45,15 @@ const StyledUploadedImage = styled.img`
 `
 
 const StyledIconPen = styled.i`
-text-decoration: none;
-color: white;
+  text-decoration: none;
+  color: white;
+`
+
+const StyledButton = styled(Button)`
+  margin-left: 18px;
 `
 
 function Summary(props) {
-
   const [experience] = React.useState(
     JSON.parse(localStorage.getItem("experiences")).find(experience => {
       return experience.id === props.match.params.id
@@ -66,11 +72,12 @@ function Summary(props) {
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledHeader>
       <Link to="/form">
-        <Button onClick={handleClick}>Bearbeiten
-          <StyledIconPen className="fas fa-pencil-alt fa-lg"  />
-        </Button>
+        <StyledButton onClick={handleClick}>
+          Bearbeiten
+          <StyledIconPen className="fas fa-pencil-alt fa-lg" />
+        </StyledButton>
       </Link>
-      
+
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />
