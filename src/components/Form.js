@@ -4,7 +4,7 @@ import uuidv1 from "uuid/v1"
 import axios from "axios"
 
 import Header from "./Header"
-import headerImg from "../images/diary.png"
+// import headerImg from "../images/diary.png"
 import Button from "./Button"
 
 const StyledImg = styled.img`
@@ -177,7 +177,7 @@ function Form({ history, match }) {
   return (
     <>
       <Header />
-      <StyledImg src={headerImg} alt="dream-image" />
+      {/* <StyledImg src={headerImg} alt="dream-image" /> */}
       <StyledForm onSubmit={addNewExperience}>
         <StyledDatePicker
           onChange={handleDateChange}
