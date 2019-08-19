@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 import headerImg from "../images/overview.png"
 import logo from "../images/LogoOutbreak.png"
+import Footer from "../components/Footer"
 
 const StyledImgLogo = styled.div`
   display: flex;
@@ -140,6 +141,7 @@ function Overview() {
           )
         })}
       </StyledContainer>
+      <Footer />
     </>
   )
 }

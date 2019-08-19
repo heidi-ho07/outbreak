@@ -16,12 +16,12 @@ const StyledImgLogo = styled.div`
 const StyledImg = styled.img`
   height: 70vh;
   width: 100vw;
-  padding: 0;
   object-fit: cover;
   margin-bottom: 30px;
   box-shadow: 0 5px 15px -5px #00000070;
   z-index: 1;
   position: relative;
+  display: inline-block;
 `
 
 const StyledLogo = styled.img`

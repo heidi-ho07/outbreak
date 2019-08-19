@@ -13,7 +13,6 @@ import Overview from "../components/Overview"
 import Country from "../components/Country"
 import Form from "../components/Form"
 import Summary from "../components/Summary"
-import Footer from "../components/Footer"
 
 function App(props) {
   return (
@@ -29,7 +28,6 @@ function App(props) {
           <Route exact path="/form/edit/:id" component={Form} />
           <Route exact path="/summary/:id" component={Summary} />
         </Switch>
-        <Footer />
       </Router>
     </>
   )

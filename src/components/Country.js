@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import headerImg from "../images/countryPage.png"
 import Button from "./Button"
 import logo from "../images/LogoOutbreak.png"
+import Footer from "../components/Footer"
 
 import moment from "moment"
 
@@ -139,6 +140,7 @@ function Country(props) {
           </div>
         )
       })}
+      <Footer />
     </>
   )
 }

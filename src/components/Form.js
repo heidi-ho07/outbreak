@@ -6,6 +6,7 @@ import axios from "axios"
 import headerImg from "../images/form.png"
 import logo from "../images/LogoOutbreak.png"
 import Button from "./Button"
+import Footer from "../components/Footer"
 
 const StyledImgLogo = styled.div`
   display: flex;
@@ -41,6 +42,7 @@ const StyledInput = styled.input`
   height: 30px;
   outline: none;
   color: #414141;
+  text-align: center;
   box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
   ::placeholder {
     font-size: 19px;
@@ -235,6 +237,7 @@ function Form({ history, match }) {
         </StyledBtnContainer>
       </StyledForm>
       <img src={image} alt="" style={{ width: "100%" }} />
+      <Footer />
     </>
   )
 }

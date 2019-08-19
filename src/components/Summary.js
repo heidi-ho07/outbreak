@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import Button from "./Button"
 import headerImg from "../images/summary.png"
 import logo from "../images/LogoOutbreak.png"
+import Footer from "../components/Footer"
 
 const StyledImgLogo = styled.div`
   display: flex;
@@ -111,6 +112,7 @@ function Summary(props) {
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />
       </StyledContainerImage>
+      <Footer />
     </>
   )
 }
