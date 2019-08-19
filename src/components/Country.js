@@ -79,6 +79,14 @@ const StyledDeleteBtn = styled.i`
   padding-left: 20px;
 `
 
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
+`
+
 function Country(props) {
   const [experiences, setExperiences] = React.useState(
     JSON.parse(localStorage.getItem("experiences")) || []
@@ -101,12 +109,20 @@ function Country(props) {
     }
   }
 
+  function handleClickBack() {
+    window.history.back()
+  }
+
   return (
     <>
       <StyledHeaderContainer>
         <StyledLogo src={logo} alt="logo" />
         <StyledCountry>{props.match.params.name}</StyledCountry>
       </StyledHeaderContainer>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
       <StyledContainer>
         <StyledContainer>
           <Link to="/form">

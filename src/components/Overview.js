@@ -80,6 +80,14 @@ const StyledCountryContainer = styled.div`
   line-height: 10px;
 `
 
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
+`
+
 function Overview() {
   const [countries, setCountries] = useState(
     JSON.parse(localStorage.getItem("country")) || []
@@ -112,6 +120,9 @@ function Overview() {
       ])
     }, 500)
   }
+  function handleClickBack() {
+    window.history.back()
+  }
 
   return (
     <>
@@ -119,6 +130,10 @@ function Overview() {
         <StyledImg src={headerImg} alt="travel-diary image" />
         <StyledLogo src={logo} />
       </StyledImgLogo>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
       <StyledContainer>
         <StyledHeadline>Meine Länder</StyledHeadline>
         <form onSubmit={addNewCountry}>

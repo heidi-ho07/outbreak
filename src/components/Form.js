@@ -109,6 +109,14 @@ const StyledBtnContainer = styled.div`
   padding: 18px;
 `
 
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
+`
+
 function Form({ history, match }) {
   const [experiences, setExperiences] = React.useState(
     JSON.parse(localStorage.getItem("experiences")) || []
@@ -194,12 +202,20 @@ function Form({ history, match }) {
     setImage(response.data.url)
   }
 
+  function handleClickBack() {
+    window.history.back()
+  }
+
   return (
     <>
       <StyledImgLogo>
         <StyledImg src={headerImg} alt="dream-image" />
         <StyledLogo src={logo} alt="logo" />
       </StyledImgLogo>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
       <StyledForm onSubmit={addNewExperience}>
         <StyledDatePicker
           onChange={handleDateChange}

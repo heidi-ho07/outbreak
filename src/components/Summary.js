@@ -81,6 +81,14 @@ const StyledButton = styled(Button)`
   margin: 17px;
 `
 
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
+`
+
 function Summary(props) {
   const [experience] = React.useState(
     JSON.parse(localStorage.getItem("experiences")).find(experience => {
@@ -93,6 +101,10 @@ function Summary(props) {
     props.history.push(`/form/edit/${experience.id}`)
   }
 
+  function handleClickBack() {
+    window.history.back()
+  }
+
   return (
     <>
       <StyledImgLogo>
@@ -100,6 +112,10 @@ function Summary(props) {
         <StyledLogo src={logo} alt="logo" />
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledImgLogo>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
       <Link to="/form">
         <StyledContainerBtn>
           <StyledButton onClick={handleClick}>
