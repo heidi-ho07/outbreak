@@ -3,21 +3,38 @@ import React, { useState } from "react"
 import uuidv1 from "uuid/v1"
 import axios from "axios"
 
-import Header from "./Header"
-// import headerImg from "../images/diary.png"
+import headerImg from "../images/form.png"
+import logo from "../images/LogoOutbreak.png"
 import Button from "./Button"
 
+const StyledImgLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const StyledImg = styled.img`
-  height: 100%;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  height: 70vh;
+  width: 100vw;
+  padding: 0;
+  object-fit: cover;
+  margin-bottom: 30px;
   box-shadow: 0 5px 15px -5px #00000070;
+  z-index: 1;
+  position: relative;
+`
+
+const StyledLogo = styled.img`
+  width: 60%;
+  z-index: 2;
+  position: absolute;
+  top: 30px;
+  color: white;
 `
 
 const StyledInput = styled.input`
-  border: 2px solid #8bbabb;
-  border-radius: 5px;
+  border: 2px solid #e28273;
+  border-radius: 2px;
   font-family: "Cousine", monospace;
   font-size: 17px;
   width: 80%;
@@ -33,8 +50,8 @@ const StyledInput = styled.input`
 `
 
 const StyledTextarea = styled.textarea`
-  border: 2px solid #8bbabb;
-  border-radius: 5px;
+  border: 2px solid #e28273;
+  border-radius: 2px;
   width: 80%;
   height: 300px;
   font-family: "Cousine", monospace;
@@ -57,8 +74,8 @@ const StyledForm = styled.form`
 `
 
 const StyledIconSave = styled.i`
-  color: white;
-  border-left: 2px solid white;
+  color: #414141;
+  border-left: 2px solid #e28273;
   padding: 5px 5px 5px 20px;
   margin-left: 15px;
 `
@@ -67,8 +84,8 @@ const StyledDatePicker = styled.input`
   font-family: "Cousine", monospace;
   outline: none;
   font-size: 17px;
-  border: 2px solid #8bbabb;
-  border-radius: 5px;
+  border: 2px solid #e28273;
+  border-radius: 2px;
   margin-bottom: 10px;
   width: 80%;
   color: #dedede;
@@ -77,7 +94,7 @@ const StyledDatePicker = styled.input`
 `
 
 const StyledUploadIcon = styled.i`
-  color: #8bbabb;
+  color: #e28273;
   box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.25);
   margin-left: 7px;
 `
@@ -87,6 +104,7 @@ const StyledBtnContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+  padding: 18px;
 `
 
 function Form({ history, match }) {
@@ -176,8 +194,10 @@ function Form({ history, match }) {
 
   return (
     <>
-      <Header />
-      {/* <StyledImg src={headerImg} alt="dream-image" /> */}
+      <StyledImgLogo>
+        <StyledImg src={headerImg} alt="dream-image" />
+        <StyledLogo src={logo} alt="logo" />
+      </StyledImgLogo>
       <StyledForm onSubmit={addNewExperience}>
         <StyledDatePicker
           onChange={handleDateChange}

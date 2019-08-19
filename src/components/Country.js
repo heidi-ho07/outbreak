@@ -32,7 +32,6 @@ const StyledHeaderContainer = styled.div`
 const StyledLogo = styled.img`
   width: auto;
   height: 225px;
-  color: white;
 `
 
 const StyledCountry = styled.h1`
