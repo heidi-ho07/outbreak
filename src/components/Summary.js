@@ -2,16 +2,41 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import Header from "./Header"
 import Button from "./Button"
 import headerImg from "../images/summary.png"
+import logo from "../images/LogoOutbreak.png"
+
+const StyledImgLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledImg = styled.img`
+  height: 70vh;
+  width: 100vw;
+  padding: 0;
+  object-fit: cover;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px -5px #00000070;
+  z-index: 1;
+  position: relative;
+`
+
+const StyledLogo = styled.img`
+  width: 60%;
+  z-index: 2;
+  position: absolute;
+  top: 30px;
+  color: white;
+`
 
 const StyledText = styled.div`
-  border: 2px solid #8bbabb;
-  border-radius: 5px;
+  border: 2px solid #e28273;
+  border-radius: 2px;
   padding: 20px;
-  margin: 15px;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px -5px #00000070;
+  margin: 18px;
 `
 
 const StyledHeadline = styled.h1`
@@ -19,18 +44,9 @@ const StyledHeadline = styled.h1`
   font-family: "Dancing Script", cursive;
   font-weight: 700;
   font-size: 60px;
-`
-
-const StyledHeader = styled.div`
-  background-image: url(${headerImg});
-  background-size: 100%;
-  height: 142px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-  filter: grayscale(20%);
-  box-shadow: 0 5px 15px -5px #00000070;
+  z-index: 3;
+  position: absolute;
+  bottom: 265px;
 `
 
 const StyledContainerImage = styled.div`
@@ -40,17 +56,28 @@ const StyledContainerImage = styled.div`
 
 const StyledUploadedImage = styled.img`
   width: 345px;
-  border: 2px solid #8bbabb;
-  border-radius: 5px;
+  border: 2px solid #e28273;
+  border-radius: 2px;
+  box-shadow: 0 5px 10px -5px #00000070;
+  margin-bottom: 30px;
 `
 
 const StyledIconPen = styled.i`
   text-decoration: none;
-  color: white;
+  color: #414141;
+  padding: 10px 10px 10px 20px;
+  margin-left: 15px;
+  border-left: 2px solid #e28273;
+`
+
+const StyledContainerBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const StyledButton = styled(Button)`
-  margin-left: 18px;
+  margin: 17px;
 `
 
 function Summary(props) {
@@ -67,17 +94,19 @@ function Summary(props) {
 
   return (
     <>
-      <Header />
-      <StyledHeader>
+      <StyledImgLogo>
+        <StyledImg src={headerImg} alt="sunset-image" />
+        <StyledLogo src={logo} alt="logo" />
         <StyledHeadline>{experience.title}</StyledHeadline>
-      </StyledHeader>
+      </StyledImgLogo>
       <Link to="/form">
-        <StyledButton onClick={handleClick}>
-          Bearbeiten
-          <StyledIconPen className="fas fa-pencil-alt fa-lg" />
-        </StyledButton>
+        <StyledContainerBtn>
+          <StyledButton onClick={handleClick}>
+            Bearbeiten
+            <StyledIconPen className="fas fa-pencil-alt fa-lg" />
+          </StyledButton>
+        </StyledContainerBtn>
       </Link>
-
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />

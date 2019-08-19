@@ -2,51 +2,65 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import Header from "./Header"
-import headerImg from "../images/Reisetagebuch.png"
+import headerImg from "../images/overview.png"
+import logo from "../images/LogoOutbreak.png"
+
+const StyledImgLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const StyledImg = styled.img`
-  height: 100%;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  height: 70vh;
+  width: 100vw;
+  padding: 0;
+  object-fit: cover;
+  margin-bottom: 30px;
   box-shadow: 0 5px 15px -5px #00000070;
+  z-index: 1;
+  position: relative;
 `
 
-const StyledContent = styled.p`
-  font-size: 20px;
-  padding: 10px;
-  display: inline;
+const StyledLogo = styled.img`
+  width: 60%;
+  z-index: 2;
+  position: absolute;
+  top: 30px;
+  color: white;
 `
 
-const StyledFolderIcon = styled.i`
-  color: #414141;
+const StyledHeadline = styled.p`
+  font-size: 24px;
   padding: 10px;
+  margin-bottom: 20px;
 `
 
 const StyledTrashIcon = styled.i`
   color: #414141;
 `
 
-const StyledSearchBtn = styled.button`
-  border: none;
-  background: none;
-  margin-left: 20px;
-  color: #414141;
-`
-
 const StyledContainer = styled.div`
   text-align: center;
+  padding: 18px;
 `
 
 const StyledInput = styled.input`
-  border: none;
-  font-size: 16px;
   font-family: "Cousine", monospace;
+  border-radius: 2px;
+  width: 100%;
+  height: auto;
+  color: #414141;
+  font-size: 16px;
+  background-color: white;
+  border: 2px solid #e28273;
+  text-decoration: none;
+  padding: 15px;
   outline: none;
-  padding-right: 30px;
+  box-shadow: 0 5px 10px -5px #00000070;
+  margin-bottom: 20px;
   ::placeholder {
-    font-size: 14px;
+    font-size: 16px;
   }
 `
 
@@ -60,22 +74,9 @@ const StyledCountryContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 80px;
   margin: 10px;
-  font-size: 18px;
-`
-
-const StyledInputContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 0 65px;
-`
-
-const StyledHeadline = styled.div`
-  margin-bottom: 20px;
   font-size: 20px;
-  font-weight: 600;
-  color: #414141;
+  line-height: 10px;
 `
 
 function Overview() {
@@ -113,24 +114,19 @@ function Overview() {
 
   return (
     <>
-      <Header />
-      <StyledContainer>
+      <StyledImgLogo>
         <StyledImg src={headerImg} alt="travel-diary image" />
-        <StyledHeadline>
-          <StyledContent>Übersicht meiner Länder</StyledContent>
-        </StyledHeadline>
+        <StyledLogo src={logo} />
+      </StyledImgLogo>
+      <StyledContainer>
+        <StyledHeadline>Meine Länder</StyledHeadline>
         <form onSubmit={addNewCountry}>
-          <StyledInputContainer>
-            <StyledInput
-              value={newCountry}
-              onChange={handleChange}
-              type="search"
-              placeholder="Land hinzufügen"
-            />
-            <StyledSearchBtn type="submit">
-              <StyledFolderIcon className="fas fa-plus-square fa-2x" />
-            </StyledSearchBtn>
-          </StyledInputContainer>
+          <StyledInput
+            value={newCountry}
+            onChange={handleChange}
+            type="search"
+            placeholder="Land hinzufügen"
+          />
         </form>
         {countries.map((country, index) => {
           return (

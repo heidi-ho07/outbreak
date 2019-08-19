@@ -2,22 +2,36 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import Header from "./Header"
-import headerImg from "../images/overview.png"
-import Globalstyle from "../app/Globalstyles"
+import headerImg from "../images/countryPage.png"
 import Button from "./Button"
+import logo from "../images/LogoOutbreak.png"
 
 import moment from "moment"
 
-const StyledHeader = styled.div`
-  background-image: url(${headerImg});
-  background-size: 100%;
-  height: 142px;
+const StyledContainer = styled.div`
+  padding: 18px;
+  text-align: center;
+  margin-bottom: 30px;
+`
+
+const StyledHeaderContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding: 40px 0;
+  justify-content: space-between;
+  flex-direction: column;
+  background-image: url(${headerImg});
+  background-size: cover;
   margin-bottom: 50px;
   box-shadow: 0 5px 15px -5px #00000070;
+  height: 70vh;
+  width: 100vw;
+  margin-bottom: 30px;
+`
+
+const StyledLogo = styled.img`
+  width: auto;
+  height: 225px;
 `
 
 const StyledCountry = styled.h1`
@@ -29,8 +43,16 @@ const StyledCountry = styled.h1`
 
 const StyledOverview = styled.div`
   text-align: center;
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 10px;
+`
+
+const StyledAddIcon = styled.i`
+  color: #414141;
+  padding: 10px;
+  margin-left: 20px;
+  border-left: 2px solid #e28273;
+  padding-left: 20px;
 `
 
 const StyledLink = styled(Link)`
@@ -46,21 +68,14 @@ const StyledPlane = styled.i`
   padding-right: 30px;
   padding-left: 20px;
 `
-const StyledIconPen = styled.i`
-  color: white;
-  border-left: 2px solid white;
-  padding: 5px 5px 5px 20px;
-  margin-left: 15px;
+
+const StyledCity = styled.span`
+  font-size: 18px;
 `
 
 const StyledDeleteBtn = styled.i`
   color: #414141;
   padding-left: 20px;
-`
-
-const StyledContainer = styled.div`
-  text-align: center;
-  margin-bottom: 30px;
 `
 
 function Country(props) {
@@ -87,20 +102,21 @@ function Country(props) {
 
   return (
     <>
-      <Globalstyle />
-      <Header />
-      <StyledHeader>
+      <StyledHeaderContainer>
+        <StyledLogo src={logo} alt="logo" />
         <StyledCountry>{props.match.params.name}</StyledCountry>
-      </StyledHeader>
+      </StyledHeaderContainer>
       <StyledContainer>
-        <Link to="/form">
-          <Button>
-            Neuer Beitrag
-            <StyledIconPen className="far fa-edit fa-lg" />
-          </Button>
-        </Link>
+        <StyledContainer>
+          <Link to="/form">
+            <Button>
+              Neuer Beitrag
+              <StyledAddIcon className="fas fa-plus-circle fa-lg" />
+            </Button>
+          </Link>
+        </StyledContainer>
+        <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
       </StyledContainer>
-      <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
       {experiences.map((experience, index) => {
         return (
           <div
@@ -109,11 +125,11 @@ function Country(props) {
           >
             <StyledLink to={`/summary/${experience.id}`}>
               <StyledPlane className="fab fa-telegram-plane" />
-
-              <span>{moment(experience.date).format("ll")}</span>
-              <span> - </span>
-
-              <span>{experience.title}</span>
+              <StyledCity>
+                <span>{moment(experience.date).format("ll")}</span>
+                <span> - </span>
+                <span>{experience.title}</span>
+              </StyledCity>
             </StyledLink>
 
             <StyledDeleteBtn
