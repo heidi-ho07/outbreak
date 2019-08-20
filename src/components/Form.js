@@ -45,6 +45,7 @@ const StyledInput = styled.input`
   color: #414141;
   text-align: center;
   padding: 21px 15px;
+  margin-bottom: 20px;
   box-shadow: 0 5px 10px -5px #00000070;
   ::placeholder {
     font-size: 19px;
@@ -62,7 +63,6 @@ const StyledTextarea = styled.textarea`
   font-size: 17px;
   background-color: none;
   color: #414141;
-  margin: 20px;
   outline: none;
   box-shadow: 0 5px 10px -5px #00000070;
   padding: 20px;
@@ -91,11 +91,12 @@ const StyledDatePicker = styled.input`
   border: 2px solid #e28273;
   border-radius: 2px;
   margin-bottom: 10px;
-  padding: 10px 15px;
-  width: 80%;
+  padding: 8px 15px;
   color: #dedede;
   text-align: center;
   box-shadow: 0 5px 10px -5px #00000070;
+  width: 80%;
+  height: auto;
 `
 
 const StyledUploadIcon = styled.i`
@@ -126,7 +127,7 @@ function Form({ history, match }) {
   )
 
   const experience = experiences.find(experience => {
-    return experience.id === match.params.id
+    return experience.id === match.params.experienceId
   })
 
   const [title, setTitle] = useState((experience && experience.title) || "")
@@ -163,17 +164,15 @@ function Form({ history, match }) {
         date,
         image,
         id: uuidv1(),
-        countryId: match.params.id
+        countryId: match.params.countryId
       }
-      console.log(newExperience)
       await setExperiences([...experiences, newExperience])
-      console.log(newExperience)
     }
 
     setTitle("")
     setContent("")
 
-    history.push(`/country/${match.params.id}`) // Todo: go last country
+    history.push(`/country/${match.params.countryId}`) // Todo: go last country
   }
 
   function handleTitleChange(event) {

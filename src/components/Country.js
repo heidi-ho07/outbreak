@@ -97,24 +97,29 @@ function Country(props) {
     localStorage.setItem("experiences", JSON.stringify(experiences))
   }, [experiences])
 
-  function handleDelete(index) {
-    let sign = prompt("Wirklich löschen?")
+  function handleDelete(experienceId) {
+    // let sign = prompt("Wirklich löschen?")
 
-    if (sign.toLowerCase() === "ja") {
-      setTimeout(function() {
-        setExperiences([
-          ...experiences.slice(0, index),
-          ...experiences.slice(index + 1)
-        ])
-      }, 500)
-    }
+    const index = experiences
+      .map(experience => {
+        return experience.id
+      })
+      .indexOf(experienceId)
+
+    // if (sign.toLowerCase() === "ja") {
+    setTimeout(function() {
+      setExperiences([
+        ...experiences.slice(0, index),
+        ...experiences.slice(index + 1)
+      ])
+    }, 500)
+    // }
   }
 
   function handleClickBack() {
     window.history.back()
   }
 
-  console.log(props)
   return (
     <>
       <StyledHeaderContainer>
@@ -172,7 +177,7 @@ function Country(props) {
               </StyledLink>
 
               <StyledDeleteBtn
-                onClick={() => handleDelete(index)}
+                onClick={() => handleDelete(experience.id)}
                 className="fas fa-trash-alt fa-s shake"
               />
             </div>

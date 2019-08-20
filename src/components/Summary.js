@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 
 import Button from "./Button"
 import headerImg from "../images/summary.png"
@@ -56,11 +56,12 @@ const StyledContainerImage = styled.div`
 `
 
 const StyledUploadedImage = styled.img`
-  width: 345px;
+  width: 376px;
   border: 2px solid #e28273;
   border-radius: 2px;
   box-shadow: 0 5px 10px -5px #00000070;
   margin-bottom: 30px;
+  margin: 18px;
 `
 
 const StyledIconPen = styled.i`
@@ -100,15 +101,10 @@ function Summary(props) {
     })
   )
 
-  function handleClick(event) {
-    event.preventDefault()
-    props.history.push(`/form/edit/${experience.id}`)
-  }
-
   function handleClickBack() {
     window.history.back()
   }
-
+  console.log(props)
   return (
     <>
       <StyledImgLogo>
@@ -120,9 +116,11 @@ function Summary(props) {
         onClick={handleClickBack}
         className="fas fa-angle-left fa-2x"
       />
-      <StyledLink to="/form">
+      <StyledLink
+        to={`/country/${experience.countryId}/${props.match.params.id}`}
+      >
         <StyledContainerBtn>
-          <StyledButton onClick={handleClick}>
+          <StyledButton>
             Bearbeiten
             <StyledIconPen className="fas fa-pencil-alt fa-lg" />
           </StyledButton>
@@ -137,4 +135,4 @@ function Summary(props) {
   )
 }
 
-export default Summary
+export default withRouter(Summary)
