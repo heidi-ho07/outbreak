@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import uuidv1 from "uuid/v1"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -90,11 +91,11 @@ const StyledBackBtn = styled.i`
 
 function Overview() {
   const [countries, setCountries] = useState(
-    JSON.parse(localStorage.getItem("country")) || []
+    JSON.parse(localStorage.getItem("countries")) || []
   )
 
   React.useEffect(() => {
-    localStorage.setItem("country", JSON.stringify(countries))
+    localStorage.setItem("countries", JSON.stringify(countries))
   }, [countries])
 
   const [newCountry, setNewCountry] = useState("")
@@ -105,14 +106,12 @@ function Overview() {
 
   function addNewCountry(event) {
     event.preventDefault()
-    setCountries([...countries, newCountry])
+    setCountries([...countries, { name: newCountry, id: uuidv1() }])
 
     setNewCountry("")
   }
 
   function handleDelete(index) {
-    // countries.splice(index, 1)
-    // setCountries([...countries])
     setTimeout(function() {
       setCountries([
         ...countries.slice(0, index),
@@ -146,8 +145,10 @@ function Overview() {
         </form>
         {countries.map((country, index) => {
           return (
-            <StyledCountryContainer key={country}>
-              <StyledLink to={`/country/${country}`}>{country}</StyledLink>
+            <StyledCountryContainer key={country.id}>
+              <StyledLink to={`/country/${country.id}`}>
+                {country.name}
+              </StyledLink>
               <StyledTrashIcon
                 onClick={() => handleDelete(index)}
                 className="fas fa-trash-alt fa-s shake"

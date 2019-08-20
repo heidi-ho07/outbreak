@@ -72,6 +72,7 @@ const StyledPlane = styled.i`
 
 const StyledCity = styled.span`
   font-size: 18px;
+  margin-bottom: 40px;
 `
 
 const StyledDeleteBtn = styled.i`
@@ -113,11 +114,20 @@ function Country(props) {
     window.history.back()
   }
 
+  console.log(props)
   return (
     <>
       <StyledHeaderContainer>
         <StyledLogo src={logo} alt="logo" />
-        <StyledCountry>{props.match.params.name}</StyledCountry>
+        <StyledCountry>
+          {JSON.parse(localStorage.getItem("countries"))
+            .filter(country => {
+              return country.id === props.match.params.name
+            })
+            .map(country => {
+              return country.name
+            })}
+        </StyledCountry>
       </StyledHeaderContainer>
       <StyledBackBtn
         onClick={handleClickBack}
@@ -125,37 +135,49 @@ function Country(props) {
       />
       <StyledContainer>
         <StyledContainer>
-          <Link to="/form">
+          <Link to={`/country/${props.match.params.name}/new`}>
             <Button>
               Neuer Beitrag
               <StyledAddIcon className="fas fa-plus-circle fa-lg" />
             </Button>
           </Link>
         </StyledContainer>
-        <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
+        <StyledOverview>
+          Beiträge (
+          {
+            experiences.filter(experience => {
+              return experience.countryId === props.match.params.name
+            }).length
+          }
+          )
+        </StyledOverview>
       </StyledContainer>
-      {experiences.map((experience, index) => {
-        return (
-          <div
-            key={experience.id}
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <StyledLink to={`/summary/${experience.id}`}>
-              <StyledPlane className="fab fa-telegram-plane" />
-              <StyledCity>
-                <span>{moment(experience.date).format("ll")}</span>
-                <span> - </span>
-                <span>{experience.title}</span>
-              </StyledCity>
-            </StyledLink>
+      {experiences
+        .filter(experience => {
+          return experience.countryId === props.match.params.name
+        })
+        .map((experience, index) => {
+          return (
+            <div
+              key={experience.id}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <StyledLink to={`/summary/${experience.id}`}>
+                <StyledPlane className="fab fa-telegram-plane" />
+                <StyledCity>
+                  <span>{moment(experience.date).format("ll")}</span>
+                  <span> - </span>
+                  <span>{experience.title}</span>
+                </StyledCity>
+              </StyledLink>
 
-            <StyledDeleteBtn
-              onClick={() => handleDelete(index)}
-              className="fas fa-trash-alt fa-s shake"
-            />
-          </div>
-        )
-      })}
+              <StyledDeleteBtn
+                onClick={() => handleDelete(index)}
+                className="fas fa-trash-alt fa-s shake"
+              />
+            </div>
+          )
+        })}
       <Footer />
     </>
   )

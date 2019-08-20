@@ -21,7 +21,7 @@ const StyledImg = styled.img`
   box-shadow: 0 5px 15px -5px #00000070;
   z-index: 1;
   position: relative;
-  display: inline-block;
+  display: block;
 `
 
 const StyledLogo = styled.img`

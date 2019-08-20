@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { withRouter } from "react-router-dom"
 import React, { useState } from "react"
 import uuidv1 from "uuid/v1"
 import axios from "axios"
@@ -85,7 +86,7 @@ const StyledIconSave = styled.i`
 const StyledDatePicker = styled.input`
   font-family: "Cousine", monospace;
   outline: none;
-  font-size: 17px;
+  font-size: 18px;
   border: 2px solid #e28273;
   border-radius: 2px;
   margin-bottom: 10px;
@@ -154,7 +155,15 @@ function Form({ history, match }) {
         ...experiences.slice(index + 1)
       ])
     } else {
-      const newExperience = { title, content, date, image, id: uuidv1() }
+      const newExperience = {
+        title,
+        content,
+        date,
+        image,
+        id: uuidv1(),
+        countryId: match.params.id
+      }
+      console.log(newExperience)
       await setExperiences([...experiences, newExperience])
       console.log(newExperience)
     }
@@ -162,7 +171,7 @@ function Form({ history, match }) {
     setTitle("")
     setContent("")
 
-    history.push("/country/Thailand") // Todo: go last country
+    history.push(`/country/${match.params.id}`) // Todo: go last country
   }
 
   function handleTitleChange(event) {
@@ -258,4 +267,4 @@ function Form({ history, match }) {
   )
 }
 
-export default Form
+export default withRouter(Form)
