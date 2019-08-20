@@ -77,6 +77,10 @@ const StyledContainerBtn = styled.div`
   align-items: center;
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
+
 const StyledButton = styled(Button)`
   margin: 17px;
 `
@@ -116,14 +120,14 @@ function Summary(props) {
         onClick={handleClickBack}
         className="fas fa-angle-left fa-2x"
       />
-      <Link to="/form">
+      <StyledLink to="/form">
         <StyledContainerBtn>
           <StyledButton onClick={handleClick}>
             Bearbeiten
             <StyledIconPen className="fas fa-pencil-alt fa-lg" />
           </StyledButton>
         </StyledContainerBtn>
-      </Link>
+      </StyledLink>
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />

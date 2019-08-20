@@ -44,7 +44,8 @@ const StyledInput = styled.input`
   outline: none;
   color: #414141;
   text-align: center;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  padding: 21px 15px;
+  box-shadow: 0 5px 10px -5px #00000070;
   ::placeholder {
     font-size: 19px;
     color: #dedede;
@@ -63,7 +64,7 @@ const StyledTextarea = styled.textarea`
   color: #414141;
   margin: 20px;
   outline: none;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px -5px #00000070;
   padding: 20px;
   ::placeholder {
     font-size: 19px;
@@ -90,10 +91,11 @@ const StyledDatePicker = styled.input`
   border: 2px solid #e28273;
   border-radius: 2px;
   margin-bottom: 10px;
+  padding: 10px 15px;
   width: 80%;
   color: #dedede;
   text-align: center;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px -5px #00000070;
 `
 
 const StyledUploadIcon = styled.i`
