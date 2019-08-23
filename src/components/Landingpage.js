@@ -16,7 +16,7 @@ const StyledBackpacker = styled.img`
   position: absolute;
   z-index: 3;
   top: 235px;
-  left: 150px;
+  left: 160px;
   animation: ${fadeIn} 3s ease-out infinite;
 `
 
@@ -25,7 +25,7 @@ const StyledLogo = styled.img`
   margin-top: 150px;
   position: absolute;
   z-index: 2;
-  margin-left: 20px;
+  margin-left: 35px;
 `
 
 function Landingpage() {

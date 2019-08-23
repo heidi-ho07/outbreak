@@ -104,7 +104,6 @@ function Summary(props) {
   function handleClickBack() {
     window.history.back()
   }
-  console.log(props)
   return (
     <>
       <StyledImgLogo>

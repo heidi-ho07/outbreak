@@ -122,6 +122,7 @@ const StyledBackBtn = styled.i`
 `
 
 function Form({ history, match }) {
+  const [isLoading, setIsLoading] = React.useState(false)
   const [experiences, setExperiences] = React.useState(
     JSON.parse(localStorage.getItem("experiences")) || []
   )
@@ -191,6 +192,7 @@ function Form({ history, match }) {
   const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
 
   function upload(event) {
+    setIsLoading(true)
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
 
     const formData = new FormData()
@@ -205,6 +207,7 @@ function Form({ history, match }) {
         }
       })
       .then(onImageSave)
+      .then(() => setIsLoading(false))
       .catch(err => console.error(err))
   }
 
@@ -247,8 +250,14 @@ function Form({ history, match }) {
         />
         <StyledBtnContainer>
           <Button>
-            Text speichern
-            <StyledIconSave className="fas fa-save fa-lg" />
+            {isLoading ? (
+              <i className="fas fa-spinner fa-spin fa-lg" />
+            ) : (
+              <>
+                Text speichern
+                <StyledIconSave className="fas fa-save fa-lg" />
+              </>
+            )}
           </Button>
 
           <input
