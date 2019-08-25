@@ -98,22 +98,18 @@ function Country(props) {
   }, [experiences])
 
   function handleDelete(experienceId) {
-    // let sign = prompt("Wirklich löschen?")
-
     const index = experiences
       .map(experience => {
         return experience.id
       })
       .indexOf(experienceId)
 
-    // if (sign.toLowerCase() === "ja") {
     setTimeout(function() {
       setExperiences([
         ...experiences.slice(0, index),
         ...experiences.slice(index + 1)
       ])
     }, 500)
-    // }
   }
 
   function handleClickBack() {
