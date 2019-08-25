@@ -16,12 +16,12 @@ const StyledImgLogo = styled.div`
 const StyledImg = styled.img`
   height: 70vh;
   width: 100vw;
-  padding: 0;
   object-fit: cover;
   margin-bottom: 30px;
   box-shadow: 0 5px 15px -5px #00000070;
   z-index: 1;
   position: relative;
+  display: block;
 `
 
 const StyledLogo = styled.img`
@@ -59,13 +59,29 @@ const StyledGlobe = styled.i`
   border-left: 2px solid #e28273;
 `
 
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
+`
+
 function Home() {
+  function handleClickBack() {
+    window.history.back()
+  }
   return (
     <>
       <StyledImgLogo>
         <StyledImg src={headerImg} alt="sunset-image" />
         <StyledLogo src={logo} alt="logo" />
       </StyledImgLogo>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+        f
+      />
       <StyledContainer>
         <StyledHeader>Don't call it a dream - call it a plan</StyledHeader>
         <StyledContent>

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { withRouter } from "react-router-dom"
 import React, { useState } from "react"
 import uuidv1 from "uuid/v1"
 import axios from "axios"
@@ -6,6 +7,7 @@ import axios from "axios"
 import headerImg from "../images/form.png"
 import logo from "../images/LogoOutbreak.png"
 import Button from "./Button"
+import Footer from "../components/Footer"
 
 const StyledImgLogo = styled.div`
   display: flex;
@@ -41,7 +43,10 @@ const StyledInput = styled.input`
   height: 30px;
   outline: none;
   color: #414141;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  text-align: center;
+  padding: 21px 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 10px -5px #00000070;
   ::placeholder {
     font-size: 19px;
     color: #dedede;
@@ -58,9 +63,8 @@ const StyledTextarea = styled.textarea`
   font-size: 17px;
   background-color: none;
   color: #414141;
-  margin: 20px;
   outline: none;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px -5px #00000070;
   padding: 20px;
   ::placeholder {
     font-size: 19px;
@@ -83,14 +87,16 @@ const StyledIconSave = styled.i`
 const StyledDatePicker = styled.input`
   font-family: "Cousine", monospace;
   outline: none;
-  font-size: 17px;
+  font-size: 18px;
   border: 2px solid #e28273;
   border-radius: 2px;
   margin-bottom: 10px;
-  width: 80%;
+  padding: 8px 15px;
   color: #dedede;
   text-align: center;
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px -5px #00000070;
+  width: 80%;
+  height: auto;
 `
 
 const StyledUploadIcon = styled.i`
@@ -107,13 +113,22 @@ const StyledBtnContainer = styled.div`
   padding: 18px;
 `
 
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
+`
+
 function Form({ history, match }) {
+  const [isLoading, setIsLoading] = React.useState(false)
   const [experiences, setExperiences] = React.useState(
     JSON.parse(localStorage.getItem("experiences")) || []
   )
 
   const experience = experiences.find(experience => {
-    return experience.id === match.params.id
+    return experience.id === match.params.experienceId
   })
 
   const [title, setTitle] = useState((experience && experience.title) || "")
@@ -144,15 +159,21 @@ function Form({ history, match }) {
         ...experiences.slice(index + 1)
       ])
     } else {
-      const newExperience = { title, content, date, image, id: uuidv1() }
+      const newExperience = {
+        title,
+        content,
+        date,
+        image,
+        id: uuidv1(),
+        countryId: match.params.countryId
+      }
       await setExperiences([...experiences, newExperience])
-      console.log(newExperience)
     }
 
     setTitle("")
     setContent("")
 
-    history.push("/country/Thailand") // Todo: go last country
+    history.push(`/country/${match.params.countryId}`) // Todo: go last country
   }
 
   function handleTitleChange(event) {
@@ -171,6 +192,7 @@ function Form({ history, match }) {
   const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
 
   function upload(event) {
+    setIsLoading(true)
     const url = `https://api.cloudinary.com/v1_1/${CLOUDNAME}/upload`
 
     const formData = new FormData()
@@ -185,11 +207,16 @@ function Form({ history, match }) {
         }
       })
       .then(onImageSave)
+      .then(() => setIsLoading(false))
       .catch(err => console.error(err))
   }
 
   function onImageSave(response) {
     setImage(response.data.url)
+  }
+
+  function handleClickBack() {
+    window.history.back()
   }
 
   return (
@@ -198,6 +225,10 @@ function Form({ history, match }) {
         <StyledImg src={headerImg} alt="dream-image" />
         <StyledLogo src={logo} alt="logo" />
       </StyledImgLogo>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
       <StyledForm onSubmit={addNewExperience}>
         <StyledDatePicker
           onChange={handleDateChange}
@@ -219,8 +250,14 @@ function Form({ history, match }) {
         />
         <StyledBtnContainer>
           <Button>
-            Text speichern
-            <StyledIconSave className="fas fa-save fa-lg" />
+            {isLoading ? (
+              <i className="fas fa-spinner fa-spin fa-lg" />
+            ) : (
+              <>
+                Text speichern
+                <StyledIconSave className="fas fa-save fa-lg" />
+              </>
+            )}
           </Button>
 
           <input
@@ -235,8 +272,9 @@ function Form({ history, match }) {
         </StyledBtnContainer>
       </StyledForm>
       <img src={image} alt="" style={{ width: "100%" }} />
+      <Footer />
     </>
   )
 }
 
-export default Form
+export default withRouter(Form)

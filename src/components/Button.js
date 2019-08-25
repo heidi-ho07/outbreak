@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 const StyledButton = styled.button`
   font-family: "Cousine", monospace;
   border-radius: 2px;
-  width: 100%;
+  width: 80%;
   height: auto;
   color: #414141;
   font-size: 16px;
@@ -15,6 +15,7 @@ const StyledButton = styled.button`
   padding: 10px 15px;
   outline: none;
   box-shadow: 0 5px 10px -5px #00000070;
+  margin-bottom: 30px;
 `
 
 function Button(props) {

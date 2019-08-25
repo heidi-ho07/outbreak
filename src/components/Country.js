@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import headerImg from "../images/countryPage.png"
 import Button from "./Button"
 import logo from "../images/LogoOutbreak.png"
+import Footer from "../components/Footer"
 
 import moment from "moment"
 
@@ -71,11 +72,20 @@ const StyledPlane = styled.i`
 
 const StyledCity = styled.span`
   font-size: 18px;
+  margin-bottom: 40px;
 `
 
 const StyledDeleteBtn = styled.i`
   color: #414141;
   padding-left: 20px;
+`
+
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
 `
 
 function Country(props) {
@@ -87,58 +97,89 @@ function Country(props) {
     localStorage.setItem("experiences", JSON.stringify(experiences))
   }, [experiences])
 
-  function handleDelete(index) {
-    let sign = prompt("Wirklich löschen?")
+  function handleDelete(experienceId) {
+    const index = experiences
+      .map(experience => {
+        return experience.id
+      })
+      .indexOf(experienceId)
 
-    if (sign.toLowerCase() === "ja") {
-      setTimeout(function() {
-        setExperiences([
-          ...experiences.slice(0, index),
-          ...experiences.slice(index + 1)
-        ])
-      }, 500)
-    }
+    setTimeout(function() {
+      setExperiences([
+        ...experiences.slice(0, index),
+        ...experiences.slice(index + 1)
+      ])
+    }, 500)
+  }
+
+  function handleClickBack() {
+    window.history.back()
   }
 
   return (
     <>
       <StyledHeaderContainer>
         <StyledLogo src={logo} alt="logo" />
-        <StyledCountry>{props.match.params.name}</StyledCountry>
+        <StyledCountry>
+          {JSON.parse(localStorage.getItem("countries"))
+            .filter(country => {
+              return country.id === props.match.params.name
+            })
+            .map(country => {
+              return country.name
+            })}
+        </StyledCountry>
       </StyledHeaderContainer>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
       <StyledContainer>
         <StyledContainer>
-          <Link to="/form">
+          <Link to={`/country/${props.match.params.name}/new`}>
             <Button>
               Neuer Beitrag
               <StyledAddIcon className="fas fa-plus-circle fa-lg" />
             </Button>
           </Link>
         </StyledContainer>
-        <StyledOverview>Beiträge ({experiences.length})</StyledOverview>
+        <StyledOverview>
+          Beiträge (
+          {
+            experiences.filter(experience => {
+              return experience.countryId === props.match.params.name
+            }).length
+          }
+          )
+        </StyledOverview>
       </StyledContainer>
-      {experiences.map((experience, index) => {
-        return (
-          <div
-            key={experience.id}
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <StyledLink to={`/summary/${experience.id}`}>
-              <StyledPlane className="fab fa-telegram-plane" />
-              <StyledCity>
-                <span>{moment(experience.date).format("ll")}</span>
-                <span> - </span>
-                <span>{experience.title}</span>
-              </StyledCity>
-            </StyledLink>
+      {experiences
+        .filter(experience => {
+          return experience.countryId === props.match.params.name
+        })
+        .map((experience, index) => {
+          return (
+            <div
+              key={experience.id}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <StyledLink to={`/summary/${experience.id}`}>
+                <StyledPlane className="fab fa-telegram-plane" />
+                <StyledCity>
+                  <span>{moment(experience.date).format("ll")}</span>
+                  <span> - </span>
+                  <span>{experience.title}</span>
+                </StyledCity>
+              </StyledLink>
 
-            <StyledDeleteBtn
-              onClick={() => handleDelete(index)}
-              className="fas fa-trash-alt fa-s shake"
-            />
-          </div>
-        )
-      })}
+              <StyledDeleteBtn
+                onClick={() => handleDelete(experience.id)}
+                className="fas fa-trash-alt fa-s shake"
+              />
+            </div>
+          )
+        })}
+      <Footer />
     </>
   )
 }

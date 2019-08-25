@@ -1,10 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 
 import Button from "./Button"
 import headerImg from "../images/summary.png"
 import logo from "../images/LogoOutbreak.png"
+import Footer from "../components/Footer"
 
 const StyledImgLogo = styled.div`
   display: flex;
@@ -55,11 +56,12 @@ const StyledContainerImage = styled.div`
 `
 
 const StyledUploadedImage = styled.img`
-  width: 345px;
+  width: 376px;
   border: 2px solid #e28273;
   border-radius: 2px;
   box-shadow: 0 5px 10px -5px #00000070;
   margin-bottom: 30px;
+  margin: 18px;
 `
 
 const StyledIconPen = styled.i`
@@ -76,8 +78,20 @@ const StyledContainerBtn = styled.div`
   align-items: center;
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
+
 const StyledButton = styled(Button)`
   margin: 17px;
+`
+
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
 `
 
 function Summary(props) {
@@ -87,11 +101,9 @@ function Summary(props) {
     })
   )
 
-  function handleClick(event) {
-    event.preventDefault()
-    props.history.push(`/form/edit/${experience.id}`)
+  function handleClickBack() {
+    window.history.back()
   }
-
   return (
     <>
       <StyledImgLogo>
@@ -99,20 +111,27 @@ function Summary(props) {
         <StyledLogo src={logo} alt="logo" />
         <StyledHeadline>{experience.title}</StyledHeadline>
       </StyledImgLogo>
-      <Link to="/form">
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
+      <StyledLink
+        to={`/country/${experience.countryId}/${props.match.params.id}`}
+      >
         <StyledContainerBtn>
-          <StyledButton onClick={handleClick}>
+          <StyledButton>
             Bearbeiten
             <StyledIconPen className="fas fa-pencil-alt fa-lg" />
           </StyledButton>
         </StyledContainerBtn>
-      </Link>
+      </StyledLink>
       <StyledText>{experience.content}</StyledText>
       <StyledContainerImage>
         <StyledUploadedImage src={experience.image} alt="" />
       </StyledContainerImage>
+      <Footer />
     </>
   )
 }
 
-export default Summary
+export default withRouter(Summary)

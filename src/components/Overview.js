@@ -1,9 +1,11 @@
 import React, { useState } from "react"
+import uuidv1 from "uuid/v1"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 import headerImg from "../images/overview.png"
 import logo from "../images/LogoOutbreak.png"
+import Footer from "../components/Footer"
 
 const StyledImgLogo = styled.div`
   display: flex;
@@ -79,13 +81,21 @@ const StyledCountryContainer = styled.div`
   line-height: 10px;
 `
 
+const StyledBackBtn = styled.i`
+  color: white;
+  z-index: 4;
+  position: absolute;
+  top: 20px;
+  padding-left: 10px;
+`
+
 function Overview() {
   const [countries, setCountries] = useState(
-    JSON.parse(localStorage.getItem("country")) || []
+    JSON.parse(localStorage.getItem("countries")) || []
   )
 
   React.useEffect(() => {
-    localStorage.setItem("country", JSON.stringify(countries))
+    localStorage.setItem("countries", JSON.stringify(countries))
   }, [countries])
 
   const [newCountry, setNewCountry] = useState("")
@@ -96,20 +106,21 @@ function Overview() {
 
   function addNewCountry(event) {
     event.preventDefault()
-    setCountries([...countries, newCountry])
+    setCountries([...countries, { name: newCountry, id: uuidv1() }])
 
     setNewCountry("")
   }
 
   function handleDelete(index) {
-    // countries.splice(index, 1)
-    // setCountries([...countries])
     setTimeout(function() {
       setCountries([
         ...countries.slice(0, index),
         ...countries.slice(index + 1)
       ])
     }, 500)
+  }
+  function handleClickBack() {
+    window.history.back()
   }
 
   return (
@@ -118,6 +129,10 @@ function Overview() {
         <StyledImg src={headerImg} alt="travel-diary image" />
         <StyledLogo src={logo} />
       </StyledImgLogo>
+      <StyledBackBtn
+        onClick={handleClickBack}
+        className="fas fa-angle-left fa-2x"
+      />
       <StyledContainer>
         <StyledHeadline>Meine Länder</StyledHeadline>
         <form onSubmit={addNewCountry}>
@@ -130,8 +145,10 @@ function Overview() {
         </form>
         {countries.map((country, index) => {
           return (
-            <StyledCountryContainer key={country}>
-              <StyledLink to={`/country/${country}`}>{country}</StyledLink>
+            <StyledCountryContainer key={country.id}>
+              <StyledLink to={`/country/${country.id}`}>
+                {country.name}
+              </StyledLink>
               <StyledTrashIcon
                 onClick={() => handleDelete(index)}
                 className="fas fa-trash-alt fa-s shake"
@@ -140,6 +157,7 @@ function Overview() {
           )
         })}
       </StyledContainer>
+      <Footer />
     </>
   )
 }
