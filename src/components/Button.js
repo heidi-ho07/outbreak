@@ -15,7 +15,6 @@ const StyledButton = styled.button`
   padding: 10px 15px;
   outline: none;
   box-shadow: 0 5px 10px -5px #00000070;
-  margin-bottom: 30px;
 `
 
 function Button(props) {

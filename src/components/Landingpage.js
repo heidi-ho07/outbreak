@@ -25,7 +25,7 @@ const StyledLogo = styled.img`
   margin-top: 150px;
   position: absolute;
   z-index: 2;
-  margin-left: 35px;
+  margin-left: 26px;
 `
 
 function Landingpage() {
