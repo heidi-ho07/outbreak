@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "animate.css": "^3.7.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "csshake": "^1.5.3",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
